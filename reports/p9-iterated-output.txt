@@ -1,0 +1,49 @@
+==============================================================================
+P9 -- ITERATED VOTING: vote, then vote on the result of that vote
+==============================================================================
+  rounds=1: 5 runs
+  rounds=2: 5 runs
+  rounds=3: 5 runs
+
+  rounds           any      majority     unanimous
+------------------------------------------------------------------------------
+       1        96.50%        93.50%        43.50%
+       2        94.50%        92.50%        66.00%
+       3        90.50%        88.50%        79.00%
+
+==============================================================================
+CONTROL: rounds=1 must reproduce P7's max arm
+==============================================================================
+  rounds=1 vs P7 max, 5 shared seeds: +0.10 pp, t=0.15
+  OK -- replication holds (within noise)
+
+==============================================================================
+PRE-REGISTERED VERDICTS (registered 0d9b386)
+==============================================================================
+
+P9a: accuracy under unanimity rises from rounds 1 to 2
+  43.50% -> 66.00%  (+22.50 pp, t(4)=10.76)
+  VERDICT: SUPPORTED
+
+P9b: the gain saturates (2->3 adds less than 1->2)
+  1->2 +22.50 pp   2->3 +13.00 pp
+  VERDICT: SUPPORTED
+
+P9c: agreement rises monotonically with rounds
+  rounds=1: mean modules correct 4.050   5-of-5 in 87/200 (43.5%)
+  rounds=2: mean modules correct 4.335   5-of-5 in 132/200 (66.0%)
+  rounds=3: mean modules correct 4.340   5-of-5 in 158/200 (79.0%)
+  VERDICT: SUPPORTED
+
+P9d: under AnyLMsMatch iteration is worse, and worsens per round
+  rounds 1->2 -2.00 pp (t=-1.63)   2->3 -4.00 pp (t=-2.36)
+  VERDICT: SUPPORTED -- confident errors compound
+
+==============================================================================
+FALSIFIER CHECK (pre-registered)
+==============================================================================
+  accuracy flat across every criterion and round? no
+  NOTE: send_none% per round is recorded by IteratedVotingMonty.vote_round_summary().
+  P6's rule: if silence CLIMBS with rounds, modules are dropping out,
+  not converging, and any accuracy change is that instead.
+

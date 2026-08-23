@@ -1,0 +1,15 @@
+rotation	status	seconds	detail
+[0,0,0]	OK	48	
+[0,90,0]	OK	43	
+[0,180,0]	NO_VIEW	11	ValueError: no visible target object
+[0,270,0]	OK	43	
+[90,0,0]	OK	44	
+[90,180,0]	OK	43	
+[35,45,0]	OK	45	
+[325,45,0]	OK	45	
+[35,315,0]	OK	43	
+[325,315,0]	OK	44	
+[35,135,0]	ERROR	16	sklearn.utils._param_validation.InvalidParameterError: The 'n_neighbors' parameter of knei
+[325,135,0]	ERROR	16	sklearn.utils._param_validation.InvalidParameterError: The 'n_neighbors' parameter of knei
+[35,225,0]	ERROR	29	sklearn.utils._param_validation.InvalidParameterError: The 'n_neighbors' parameter of knei
+[325,225,0]	ERROR	17	sklearn.utils._param_validation.InvalidParameterError: The 'n_neighbors' parameter of knei

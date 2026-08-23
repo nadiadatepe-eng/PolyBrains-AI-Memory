@@ -1,0 +1,24 @@
+CP-4 -- adaptive vote weight, toy task, seed 20260818
+====================================================================
+ step reliable-OOD    mediocre  unreliable      frozen
+    1      1.1000      1.1000      0.9100      1.0000
+    5      1.4095      1.0475      0.7934      1.0000
+   10      1.4893      1.2576      0.6895      1.0000
+   25      1.6353      0.8953      0.6261      1.0000
+   50      1.8557      1.0385      0.6055      1.0000
+  100      1.9408      1.0136      0.3352      1.0000
+  150      1.8506      0.7859      0.6070      1.0000
+  200      1.9992      1.0255      0.1946      1.0000
+====================================================================
+reliable-OOD  (90% right)  w=1.9992  score=1.000  
+mediocre      (50% right)  w=1.0255  score=0.513  
+unreliable    (20% right)  w=0.1946  score=0.053  
+frozen ablation (90%)      w=1.0000  score=0.500  FROZEN
+
+recovery from the floor (no one-way ratchet):
+  after 200 failures      w=0.1000   (floor is 0.1, never 0)
+  after 1 success         w=0.2800   (recovery is not instant)
+  after 200 successes     w=2.0000   (recovered past start)
+
+in-domain confidence buys nothing (the H2 clause):
+  100 in-domain successes w=1.0000   (unchanged from 1.0)

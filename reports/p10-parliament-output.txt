@@ -1,0 +1,52 @@
+==============================================================================
+P10 -- PARLIAMENTARY VOTING: does opposition beat plain repetition?
+==============================================================================
+  parl-3      : 5 runs
+  parl-noopp  : 5 runs
+  parl-batch  : 5 runs
+  plain-3     : 5 runs
+  plain-1     : 5 runs
+
+arm                any  unanimous  mean corr  unan prec  conf wrong
+------------------------------------------------------------------------------
+parl-3          96.50%     36.00%      3.955     94.31%       2.50%
+parl-noopp      96.50%     50.50%      4.100     96.14%       2.00%
+parl-batch      99.50%     30.50%      3.930     98.57%       0.50%
+plain-3         90.50%     79.00%      4.340     90.84%       8.00%
+plain-1         96.50%     43.50%      4.050     96.59%       1.50%
+
+==============================================================================
+PRE-REGISTERED VERDICTS (registered 5b8d64f)
+==============================================================================
+
+P10a: parl-3 has FEWER confidently-wrong episodes than plain-3
+  difference -5.50 pp   t(4) = -3.77
+  VERDICT: SUPPORTED
+
+P10b: precision of unanimity is HIGHER under parl-3  [the sharp one]
+  difference +3.47 pp   t(4) = 1.47
+  VERDICT: directionally right, n.s.
+
+P10c: parl-3 reaches unanimity LESS often than plain-3
+  difference -43.00 pp   t(4) = -12.04
+  VERDICT: SUPPORTED
+
+P10d: parl-noopp control -- structure vs opposition
+  parl-3 - parl-noopp on conf_wrong_pct  :   +0.50 pp  t=  0.34  n.s.
+  parl-3 - parl-noopp on unan_precision  :   -1.83 pp  t= -0.65  n.s.
+  parl-3 - parl-noopp on unanimous       :  -14.50 pp  t= -2.61  n.s.
+  READING: opposition adds nothing over the phase structure alone.
+           P10a/b, if positive, are about SEQUENCING not dissent.
+
+P10e: sequential ordering matters (parl-3 vs parl-batch)
+  difference +5.50 pp   t(4) = 1.12
+  VERDICT: NOT SUPPORTED -- 'one by one' changes nothing measurable
+
+==============================================================================
+THE MECHANISM QUESTION
+==============================================================================
+  The reduction is np.ma.max: the loudest vote wins outright, so max
+  cannot represent opposition, only volume. If every verdict above is
+  null, the finding is about the AGGREGATION RULE -- that Monty's vote
+  path structurally cannot express dissent -- not about parliaments.
+

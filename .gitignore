@@ -1,0 +1,7 @@
+upstream/
+.venv/
+__pycache__/
+*.pyc
+reports/runs/
+reports/sources/*.pdf
+reports/sources/*.html

@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PolyBrains — Research Plan</title>
+<style>
+:root{
+  --bg:#12100e; --panel:#1a1714; --line:#2e2823; --ink:#ece4d8; --dim:#9a8f82;
+  --acc:#d98e4a; --acc2:#6fa3a0; --warn:#c9584f; --ok:#7f9c5a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 120px}
+header{padding:64px 0 40px;border-bottom:1px solid var(--line);margin-bottom:44px}
+h1{font-size:40px;line-height:1.1;margin:0 0 12px;letter-spacing:-.02em}
+h1 small{display:block;font-size:15px;font-weight:400;color:var(--acc);
+  letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.sub{color:var(--dim);font-size:18px;max-width:70ch;margin:0}
+h2{font-size:26px;margin:56px 0 18px;letter-spacing:-.01em;
+  padding-bottom:10px;border-bottom:1px solid var(--line)}
+h3{font-size:19px;margin:32px 0 10px;color:var(--acc)}
+h4{font-size:16px;margin:22px 0 8px;color:var(--acc2)}
+p{max-width:76ch}
+a{color:var(--acc2)}
+code{background:#241f1b;padding:2px 6px;border-radius:4px;font-size:.88em;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;color:#e8c9a0}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:16px 18px;overflow-x:auto;font-size:13.5px;line-height:1.55}
+pre code{background:none;padding:0;color:var(--ink)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:22px 26px;margin:22px 0}
+.panel.warn{border-left:3px solid var(--warn)}
+.panel.ok{border-left:3px solid var(--ok)}
+.panel.acc{border-left:3px solid var(--acc)}
+.tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 9px;border-radius:20px;border:1px solid var(--line);color:var(--dim);
+  margin-right:6px;vertical-align:2px}
+.tag.b{border-color:var(--acc);color:var(--acc)}
+.tag.g{border-color:var(--ok);color:var(--ok)}
+.tag.r{border-color:var(--warn);color:var(--warn)}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--acc);font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:600}
+tbody tr:hover{background:#1d1a16}
+ul,ol{max-width:76ch}
+li{margin:7px 0}
+.cp{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--acc2);
+  border-radius:8px;padding:18px 22px;margin:16px 0}
+.cp h4{margin-top:0;color:var(--ink);font-size:17px}
+.cp .gate{font-size:14px;color:var(--dim);margin-top:10px;
+  padding-top:10px;border-top:1px dashed var(--line)}
+.cp .gate b{color:var(--ok)}
+.chk{list-style:none;padding-left:0}
+.chk li{padding-left:26px;position:relative}
+.chk li:before{content:"☐";position:absolute;left:0;color:var(--dim)}
+figure{margin:26px 0;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;padding:22px}
+figcaption{color:var(--dim);font-size:13.5px;margin-top:14px;text-align:center}
+svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.svg-l{fill:var(--ink);font-size:12px;font-family:inherit}
+.svg-d{fill:var(--dim);font-size:11px;font-family:inherit}
+.svg-a{fill:var(--acc);font-size:12px;font-weight:600;font-family:inherit}
+.nav{position:sticky;top:0;background:rgba(18,16,14,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:0;z-index:9;font-size:13.5px}
+.nav a{margin-right:20px;color:var(--dim);text-decoration:none}
+.nav a:hover{color:var(--acc)}
+.q{border-left:2px solid var(--acc);padding-left:18px;color:var(--dim);font-style:italic;margin:20px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="nav"><div class="wrap">
+<a href="#claim">Claim</a><a href="#state">State of the art</a><a href="#gap">The gap</a>
+<a href="#theory">Theory</a><a href="#arch">Architecture</a><a href="#exp">Experiments</a>
+<a href="#cp">Checkpoints</a><a href="#risk">Risks</a><a href="#pub">Publication</a>
+</div></div>
+
+<div class="wrap">
+<header>
+<h1><small>Research plan · draft for discussion · updated 2026-08-19</small>
+PolyBrains</h1>
+<p class="sub">Thousand Brains Theory as the substrate. Polymath properties as the
+specification. The question is whether a system of many complete models in many reference
+frames can be made to disagree <em>productively</em> — and whether that is measurable.</p>
+</header>
+
+<div class="panel warn">
+<h3 style="margin-top:0">Where we are, end of 2026-08-19 — four experiments in one day
+<span class="tag r">P8</span><span class="tag b">P9</span><span class="tag b">P10</span><span class="tag b">P11</span></h3>
+<p><b>The morning's finding: this project's central claim, "voting harms out-of-distribution
+accuracy", is withdrawn as a general result.</b> Re-scoring the <em>same</em> 2000 episodes
+under three read-outs moves the effect from −2.80 pp to +30.20 pp. <b>The sign is set by the
+scoring criterion, not by voting.</b></p>
+<p>The afternoon tested what happens when you make modules exchange votes <em>more</em>.
+P9: iterating the vote buys agreement and pays for it in independence. P10: Nadi's
+parliamentary design — propose, then two rounds of devil's-advocate opposition — cuts
+confident errors, but the opposition itself contributed nothing. P11: rerun under a rule
+that <em>can</em> carry dissent; the opposition becomes measurably active and still does not
+improve accuracy.</p>
+<p class="q"><b>The conclusion after five experiments:</b> across every manipulation we
+tried, <em>whether and how often</em> modules exchange votes moves results by tens of
+percentage points, while <em>which arithmetic</em> reduces those votes moves almost
+nothing. That is now confirmed three independent ways.</p>
+<p style="margin-bottom:0"><b>P12 then tested H2 for the first time and refuted it</b> —
+in-domain-confidence weighting <em>improves</em> multi-frame agreement rather than
+capturing it, because the weight is bounded by the polymath specification's own
+"never silence a module" invariant. <b>A third pattern also appeared twice in unrelated
+mechanisms:</b> both iterated voting (P9) and vote weighting (P12) trade a couple of
+points of <code>any</code> accuracy for large gains in unanimity.</p>
+</div>
+
+<div class="panel warn">
+<h3 style="margin-top:0">Verification pass, 2026-08-19 — and what it found
+<span class="tag r">H2 never ran</span></h3>
+<p>Everything above was re-checked from run output rather than from this document's own
+prose, on Nadi's instruction, before any further experiment. <code>tools/audit_configs.py</code>
+is the reusable form and exits non-zero if any finding touches a published number.</p>
+<table style="margin:0">
+<tbody>
+<tr><td style="width:26%"><b>Published results</b><br><span class="tag g">clean</span></td>
+<td><b>Zero findings affecting a published number.</b> Every analyser reads the
+<code>pow_p7_*</code> runs, which have 50 episodes over all 4 OOD rotations in all 10 seeds.
+Committed yaml matches the Hydra config each run actually used. Every pre-registered verdict
+from P7 through P11 reproduces, including P8's independent DuckDB re-derivation.</td></tr>
+<tr><td><b>The big finding</b><br><span class="tag r">H2</span></td>
+<td><b>H2 was never run.</b> <code>adaptive_weight</code> is <code>false</code> in 24 of 24
+configs and <code>record_episode_outcome</code> is called nowhere outside tests. Four
+experiments recorded "H2 not supported" from prose, not from an arm. Same failure this
+project keeps catching in sweeps — a mechanism that exists, is gated, looks tested, and never
+ran.</td></tr>
+<tr><td><b>One real bug</b><br><span class="tag b">unreleased code</span></td>
+<td>P12's new experiment class called <code>super().post_episode()</code> <em>before</em>
+reading the episode target — but upstream's <code>post_episode</code> ends by advancing
+<code>primary_target</code> to the next episode. Every module was scored against the wrong
+one: a live run marked <b>all 5 modules incorrect while their MLH matched the target
+exactly</b>, dragging w(t) to 0.209 on pure artefact. Fixed; the same run now gives
+<b>88/100 correct</b>. No published number affected because P12 has not run.</td></tr>
+<tr><td><b>Known, not bugs</b></td>
+<td><code>p6_*</code> max ≡ consensus <em>is</em> P6's own refutation (modules knocked off
+the object, so no rule had votes to reduce). <code>cp5_* ≡ e2_08_*</code> because E2's 0.8
+arm is the default threshold. One incomplete E2 run is already excluded by
+<code>reports/cp5-results.md</code>.</td></tr>
+</tbody>
+</table>
+<p style="margin:14px 0 0"><b>My own audit had a bug too, and it is instructive.</b> The
+first pass compared <code>most_likely_evidence</code>, which is <b>empty</b> in these CSVs,
+and so reported "SAME WIRING" for arms that genuinely differ. Caught by asking why
+<em>every</em> pair matched — including <code>novote</code>, which cannot be identical to
+anything. <b>Comparing an empty column returns identity for free.</b></p>
+</div>
+
+<div class="panel">
+<h3 style="margin-top:0">The conclusion, stated plainly</h3>
+<p>Three findings are solid enough to defend, and one attractive story is <b>not</b>
+supported.</p>
+<table style="margin:0">
+<tbody>
+<tr><td style="width:22%"><b>1. The criterion owns the result</b><br>
+<span class="tag g">strongest</span></td>
+<td>On identical episodes, voting looks harmful (−2.80 pp), neutral (+0.20 pp) or
+transformative (<b>+30.20 pp, t=−14.40</b>) depending only on how you score an episode.
+Verified non-circular on a threshold-free metric (+0.564 modules/episode, t=15.11) and
+reproduced in a second engine (DuckDB SQL sharing no code with the Python).</td></tr>
+<tr><td><b>2. More exchange buys agreement, not truth</b><br>
+<span class="tag g">replicated</span></td>
+<td>Three plain rounds take unanimity 43.50 → 79.00% while <code>any</code> accuracy
+<em>falls</em> 96.50 → 90.50% and confident errors quadruple 1.50 → 8.00%. Modules converge
+on each other rather than on the object.</td></tr>
+<tr><td><b>3. Structure resists false consensus</b><br>
+<span class="tag g">replicated twice</span></td>
+<td>Staged, few-speakers-per-exchange voting holds confident errors at 1.00–2.50% where plain
+iteration reaches 8.00% at the <em>same</em> exchange count — under <code>max</code>
+(−5.50 pp, t=−3.77) and again under <code>consensus</code> (−7.00 pp, t=−3.50).
+<b>This is Nadi's design idea, and it works.</b></td></tr>
+<tr><td><b>4. The adversarial <em>content</em></b><br>
+<span class="tag r">not supported</span></td>
+<td>The devil's advocate is measurably active under <code>consensus</code> — it cuts
+agreement by 18.00 pp (t=−3.06) — but does not convert that friction into accuracy
+(errors t=−1.50, <code>any</code> t=0.88). <b>What works is the staging, not the
+opposition.</b></td></tr>
+</tbody>
+</table>
+<p style="margin:14px 0 0"><b>What we corrected about ourselves today.</b> The first P11
+write-up said the opposition was "inert under <code>max</code>" and freed by
+<code>consensus</code>. Under <code>max</code> the same contrast was already −14.00 pp
+(t=−2.24) — a near-miss, not an absence. The claim compares two contrasts, so it needs the
+difference-in-differences: <b>−4.00 pp, t(4)=−0.60, n.s.</b> The mechanism story is
+<em>consistent</em> with the data and <b>not confirmed by it</b>.</p>
+</div>
+
+<div class="panel">
+<h3 style="margin-top:0">P8 · the unanimity test <span class="tag g">run 2026-08-19</span>
+<code>31d0c04</code></h3>
+<p><code>AnyLMsMatch</code> — upstream's default, and ours until today — scores an episode
+correct if <b>any</b> of 5 modules is correct. That rewards module <em>independence by
+construction</em>: five independent modules get five lottery tickets, and voting, which makes
+modules agree, throws tickets away. It was the obvious reviewer objection, and it was
+untested.</p>
+<p><b>No new episodes were run.</b> The criterion is applied post-hoc in our own analysis, so
+this re-reads P7's existing 40 runs. Nothing about the runs could have been tuned to the
+outcome. All three predictions were committed at <code>5e363dc</code> before any number was
+computed.</p>
+<table style="margin:8px 0">
+<thead><tr><th>criterion</th><th>no voting</th><th>max (upstream)</th>
+<th>difference</th><th>t(9)</th><th>reading</th></tr></thead>
+<tbody>
+<tr><td><code>any</code> (≥1 of 5)</td><td>99.80%</td><td>97.00%</td>
+<td>+2.80 pp</td><td>4.58</td><td>voting <b>harms</b></td></tr>
+<tr><td><code>majority</code> (≥3 of 5)</td><td>94.60%</td><td>94.40%</td>
+<td>+0.20 pp</td><td>0.13</td><td>n.s.</td></tr>
+<tr><td><b><code>unanimous</code> (5 of 5)</b></td><td><b>10.80%</b></td><td><b>41.00%</b></td>
+<td><b>−30.20 pp</b></td><td><b>−14.40</b></td><td>voting <b>helps</b></td></tr>
+</tbody>
+</table>
+<p style="margin-bottom:0">Monotonic across the three, and under unanimity no-voting loses
+<b>10 of 10 seeds</b>. The effect that overturns the claim is an order of magnitude larger
+than the claim it overturns. Full write-up: <code>reports/p8-unanimity.md</code>.</p>
+</div>
+
+<div class="panel ok">
+<h3 style="margin-top:0">Is the flip circular? No — and that had to be checked</h3>
+<p>Unanimity rewards agreement; voting manufactures agreement. Swapping one biased criterion
+for its mirror image would be no progress at all. The discriminating test uses a metric with
+<b>no threshold</b>, so it cannot favour either read-out: <b>mean modules correct per
+episode</b>.</p>
+<table style="margin:8px 0">
+<thead><tr><th>arm</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+<th>mean correct</th></tr></thead>
+<tbody>
+<tr><td>max (upstream)</td><td>15</td><td>2</td><td>11</td><td>103</td><td>164</td>
+<td><b>205</b></td><td><b>4.028</b></td></tr>
+<tr><td>mean (control)</td><td>13</td><td>4</td><td>10</td><td>108</td><td>168</td>
+<td>197</td><td>4.010</td></tr>
+<tr><td>consensus (ours)</td><td>11</td><td>4</td><td>10</td><td>110</td><td>164</td>
+<td>201</td><td>4.030</td></tr>
+<tr><td>no voting</td><td>1</td><td>5</td><td>21</td><td><b>261</b></td><td>158</td>
+<td>54</td><td><b>3.464</b></td></tr>
+</tbody>
+</table>
+<p style="margin-bottom:0">Voting gains <b>+0.564 modules per episode, t(9)=15.11</b>,
+lifting <b>277</b> episodes and dragging <b>75</b>, with <b>zero</b> 5→0 collapses. Agreeing
+on a <em>wrong</em> answer scores nothing under unanimity, so this gain cannot come from
+agreement alone: voting is propagating correct evidence.
+<span class="tag r">exploratory</span> this check was added after seeing the effect size and
+is recorded as such, not presented as pre-registered.</p>
+</div>
+
+<div class="panel warn">
+<h3 style="margin-top:0">A correction to our own earlier record</h3>
+<p style="margin-bottom:0">P7 reported that <b>voting creates correlated failure</b>:
+all-fail episodes rose from 1 to 15. That number is correct and reproduces. But voting
+<em>simultaneously</em> moved <b>261 three-correct episodes up</b> to four and five correct,
+which the earlier report did not say. <b>Reporting the tail without the bulk was
+one-sided.</b> The same mechanism produces both, and the net on mean correctness is strongly
+positive.</p>
+</div>
+
+<div class="panel acc">
+<h3 style="margin-top:0">Where the hypotheses stand now</h3>
+<table style="margin:0">
+<tbody>
+<tr><td style="width:22%"><b>H1 clause 2</b></td><td><b>NEVER TESTED.</b> H1's second
+clause — the advantage scales with module <em>disagreement</em>, not module <em>count</em> —
+is the one that makes H1 losable. Testing it requires varying module count, and only
+<b>1-LM and 5-LM</b> runs exist, and two points cannot separate the two explanations.<br><br>
+<b>P13 splits the clause in two and attacks the cheaper half first.</b> The <em>count</em>
+term needs 3-LM and 7-LM systems, which upstream does not ship and which each need their
+own pretraining run. The <em>disagreement</em> term does not: hold the count at 5 and vary
+how far apart the sensor patches sit. That near-copy control is now <b>built, gated and
+pre-registered</b> (<code>7fb5c07</code>) — but <b>not yet run</b>, because the
+pre-sweep liveness check killed one arm (see below). <b>Both terms remain
+unmeasured.</b></td></tr>
+<tr><td><b>H1 clause 1</b></td><td><b>Refutation withdrawn.</b> Voting neither
+plainly helps nor plainly harms — the sign depends on the read-out. What survives is a
+stronger and more awkward claim: <em>the measured value of voting is dominated by a scoring
+choice nobody argued for.</em></td></tr>
+<tr><td><b>H2</b></td><td><b>REFUTED, and the sign is inverted.</b> Tested for the
+first time on 2026-08-19 (P12, <code>61ddc4d</code>, 1350 episodes). In-domain
+confidence weighting was predicted to capture the consensus and destroy the OOD
+advantage. It does the opposite: <b>+21.50 pp on unanimity</b> (t=5.00), with
+<b>no capture signature</b> (weight spread marginally <em>lower</em>, t=−0.58), and
+the gain survives the threshold-free metric at <b>+0.365 modules correct per
+episode</b> (t=3.61) so it is not an agreement artefact.<br><br>
+<b>One confound, found by re-checking and disclosed:</b> the rotation schedule is
+blocked, not interleaved, so the <code>indomain</code> arm enters the measured OOD phase
+with a fully trained weight while <code>ood</code> trains during it. That invalidates any
+<code>ood</code>-vs-<code>indomain</code> accuracy ranking (never a registered
+prediction), and it <em>strengthens</em> the refutation: the blocked order gives H2 its
+most favourable setup and the predicted harm still does not appear.<br><br>
+<b>Why it fails is the interesting part.</b> <code>AdaptiveVoteWeight</code> is bounded
+(0.1–2.0) with an EMA, so no module can run away with the vote — a 1.49x spread is not
+capture. H2's failure mode needs an <em>unbounded</em> weight. <b>The polymath
+specification's own "never silence a module, always allow recovery" invariant — frozen
+at CP-4 before any accuracy was seen — is what blocks it.</b> A constraint written for
+ethical reasons turns out to prevent the predicted computational failure.<br><br>
+<span style="color:var(--dim)">Until 2026-08-19 this row read "not supported", which
+was wrong twice over: the hypothesis had NEVER been run — <code>adaptive_weight</code> was <code>false</code> in 24 of 24 configs and
+<code>record_episode_outcome</code> was called nowhere outside the tests — and the
+evidence cited for it (E2's threshold sweep, P7/P8's reduction rules) described
+different experiments entirely.</span></td></tr>
+<tr><td><b>New</b></td><td><b>Whether you vote matters enormously; which rule you use barely
+matters.</b> All three rules sit within 1.6 pp of each other under <em>every</em> criterion,
+while voting-versus-no-voting moves 30 pp. Unexplained, and now the sharpest open
+question.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="panel">
+<h3 style="margin-top:0">The run history that led here</h3>
+<table style="margin:0">
+<tbody>
+<tr><td style="width:12%"><b>CP-0</b><br><span class="tag g">passed</span></td>
+<td>Monty 0.46.0 (<code>0c81b1f</code>) runs end to end here: 5-module pretrain 47 s, voting
+eval 58 s, peak RSS 1.3 GB. <b>Compute is not a constraint.</b> <code>d22d5b9</code></td></tr>
+<tr><td><b>P4</b><br><span class="tag r">H1 contradicted</span></td>
+<td>Voting on vs off, one variable: 96.0% vs 100.0% OOD. Voting did not add module failures
+(7 vs 8) but made them <b>correlated</b>. <code>reports/p4-voting-harms.md</code></td></tr>
+<tr><td><b>P5</b><br><span class="tag r">self-correction</span></td>
+<td>I was counting <b>learning-module rows as episodes</b> — <code>eval_stats.csv</code> is
+one row per module per episode, inflating 5-module samples 5x. Fixed by
+<code>tools/episode_accuracy.py</code>; the vote-rule null got <em>stronger</em>.</td></tr>
+<tr><td><b>P6</b><br><span class="tag r">refuted</span></td>
+<td>Spreading sensor patches 8x to force disagreement gave <em>identical</em> results across
+three different rules — not a plausible outcome, so I instrumented rather than accepted it.
+It had knocked modules <b>off the object</b>: <code>send_out_vote</code> returned
+<code>None</code> 88% of the time vs 63% stock. <b>Disagreement and absence look identical in
+output statistics and are opposite at the mechanism.</b></td></tr>
+<tr><td><b>P7</b><br><span class="tag g">2000 episodes</span></td>
+<td>Powered run, noise on 2 of 5 modules with every patch kept on the object. H1 apparently
+refuted at +2.80 pp (t=4.58). <b>Also a caught analysis error:</b> the first script used
+sd/√n and printed "SUPPORTED"; the arms share seeds, so a paired t-test is required, giving
+t=1.08 — not significant. <code>a88c029</code></td></tr>
+<tr><td><b>P8</b><br><span class="tag b">today</span></td>
+<td>Unanimity re-scoring. <b>The P7 headline is criterion-dependent and is withdrawn.</b>
+<code>31d0c04</code></td></tr>
+<tr><td><b>P9</b><br><span class="tag b">750 episodes</span></td>
+<td>Iterated voting: vote on the result of the vote. Three rounds take unanimity
+43.50 → 79.00% while <code>any</code> falls 96.50 → 90.50%. <b>Agreement bought with
+independence.</b> <b>Two sweeps were voided before this one</b>, both caught by the
+pre-registered replication control, not by inspection: one evaluated 1 of 4 OOD rotations
+(<code>Predefined</code> indexes by <em>epoch</em>), the other overrode
+<code>monty_base.py:302</code> when the live method is <code>graph_matching.py:389</code>,
+so <b>no votes were delivered in any round</b>. Both ran clean and printed plausible
+numbers. <code>2bf94d7</code></td></tr>
+<tr><td><b>P10</b><br><span class="tag b">600 episodes</span></td>
+<td>Nadi's parliament: propose (LMs 0,1,2), then oppose (LM 3), then oppose (LM 4), one
+speaker at a time. Confident errors 8.00 → 2.50% vs plain iteration (t=−3.77) with
+<code>any</code> held at 96.50%. <b>But <code>parl-noopp</code> matches it on every
+measure</b> — the benefit is the phase structure. <code>9da7bee</code></td></tr>
+<tr><td><b>P11</b><br><span class="tag b">1000 episodes</span></td>
+<td>The same parliament under <code>vote_mode="consensus"</code>, the fair test. Opposition
+becomes active (agreement −18.00 pp, t=−3.06) but still does not pay; P10's structural
+finding replicates (−7.00 pp, t=−3.50). <b>The rule's role is unproven</b> (DiD −4.00 pp,
+t=−0.60). A fifth way to void a sweep found here: Monty <b>appends</b> to an existing
+<code>eval_stats.csv</code>, so an aborted launch leaves rows the rerun adds to — one run
+came out at 73 episodes instead of 40, and it was the one feeding the replication control.
+<code>b4da4ce</code></td></tr>
+</tbody>
+</table>
+<p style="margin:14px 0 0"><b>Five voided sweeps, zero caught by reading the code.</b> Every
+one was caught by a pre-registered control, a liveness probe, or a count assertion. That is
+the project's most transferable methodological result, and it belongs in the paper.</p>
+<p style="margin:14px 0 0"><b>P13 turned that lesson forward rather than backward.</b> Its
+<code>send_none</code> check ran <em>before</em> the sweep and killed an arm that would
+have produced clean-looking numbers from an 83%-silent vote path. Every earlier instance of
+this failure was found after the compute was spent.</p>
+</div>
+
+<div class="panel acc">
+<h3 style="margin-top:0">Should we publish? My recommendation, and it is a recommendation
+only</h3>
+<p><b>Yes — but on finding 1, with findings 2 and 3 as the supporting arc, and not yet.</b>
+Two things are missing and both are cheap.</p>
+<table style="margin:0">
+<tbody>
+<tr><td style="width:26%"><b>What is ready</b></td>
+<td>The criterion result (finding 1) is powered, pre-registered, non-circular, and
+reproduced in two independent engines. It generalises past this codebase: <b>any</b>
+multi-module benchmark scored "did any module get it right" is measuring independence and
+reporting it as accuracy. That is a reviewable claim about how the field measures, not a
+claim about our system.</td></tr>
+<tr><td><b>What is missing #1</b><br><span class="tag r">blocking</span></td>
+<td><b>Everything sits on a ceiling.</b> Arms land at 97–99.8%, compressing every effect
+into a 3 pp band, and the confident-error floor is 1.00%. Two of our open verdicts are
+unresolvable at that floor rather than genuinely null. A reviewer will say the task is too
+easy, and they will be right. <b>Fix: multi-object or harder OOD episodes.</b></td></tr>
+<tr><td><b>What is missing #2</b><br><span class="tag r">blocking</span></td>
+<td><b>We must argue for a criterion, not pick one.</b> The paper's central claim is that
+the criterion decides the answer — so leaving our own criterion unjustified would be the
+paper refuting itself. The threshold-free metric (mean modules correct) is the defence and
+needs to be foregrounded.</td></tr>
+<tr><td><b>What is not ready</b></td>
+<td><b>H2 is still not supported</b> and is the hypothesis the venue decision made
+load-bearing. Publishing now means publishing without it.</td></tr>
+</tbody>
+</table>
+<p style="margin:14px 0 0"><b>The honest risk in publishing now:</b> the strongest result is
+a <em>measurement</em> critique, not a positive architectural finding. That is publishable
+and useful, but it is a different paper from the one this project set out to write. Nadi
+should decide whether that trade is acceptable before more compute goes in.</p>
+<p style="margin:14px 0 0"><b>The verification pass changed this list.</b> Publishing was
+already deferred; it should stay deferred, because <b>neither founding hypothesis has been
+properly tested</b>:</p>
+<table style="margin:14px 0 0">
+<tbody>
+<tr><td style="width:14%"><b>P12</b><br><span class="tag g">DONE</span></td>
+<td><b>H2, for real — and refuted.</b> See the hypotheses table above and
+<code>reports/p12-adaptive-weight.md</code>. Original design: Three arms differing only in what evidence moves the vote weight:
+<code>frozen</code> (upstream control), <code>ood</code> (weight earned on novel input — the
+polymath design), <code>indomain</code> (weight earned on familiar input — H2's failure
+mode). All under <code>consensus</code>, because <code>max</code> ignores how a vote was
+scaled and would make the arms identical by construction. Mixed rotation schedule, since an
+OOD-only stream would never let the <code>indomain</code> arm learn.</td></tr>
+<tr><td><b>P13</b><br><span class="tag b">built, blocked</span></td>
+<td><b>H1 clause 2, disagreement term.</b> Four arms varying sensor patch separation with
+the module count held at 5, reusing <code>pb_indomain_5lm</code>. Gated by
+<code>tests/test_p13_configs.py</code> (verified by sabotage), which asserts the stock arm
+is <em>byte-identical</em> to upstream so it is a true replication control.<br><br>
+<b>Blocked on one arm.</b> The mandatory pre-sweep <code>send_none</code> check measured
+<b>83.2% silence at separation 0.04</b> — P6's failure mode, which was 88% at 0.08. The
+0.04 arm is unusable and must become 0.02. <b>Caught before the sweep ran</b>, which is a
+first here: P6 discovered it afterwards.<br><br>
+The <em>count</em> term (1/3/5/7) stays a separate, larger job — new connectivity, sensor
+and motor configs plus a pretraining run per count. It also lifts the ceiling, one of the
+two publication blockers.</td></tr>
+<tr><td><b>P14</b><br><span class="tag g">DONE</span></td>
+<td><b>E-null — the condition this project could not previously produce.</b> Nadi's
+critique, 2026-08-20: <em>a consensus does not need to be true; given alternatives that are
+all wrong and no option to abstain, agreeing is the rational move.</em> Every prior
+experiment evaluated objects that were <b>in</b> the pretrained set —
+<code>train_distinctobj_predefined.yaml</code> and <code>eval_distinctobj_random.yaml</code>
+carry the identical 10-object list — so the correct answer was always available.<br><br>
+Five LMs pretrained on <b>nine</b> objects, <code>dice</code> held out, verified absent from
+graph memory in <code>model.pt</code>. Every module must answer; none can be right.
+<b>Result: 90.00% unanimity at 0.00% accuracy</b>, with all three controls passing.
+See <code>reports/p14-enull.md</code>.</td></tr>
+<tr><td><b>P15</b><br><span class="tag g">DONE</span></td>
+<td><b>Four held-out objects — and it corrects P14.</b> One object could not separate
+coordination from perceptual similarity (<code>dice</code> and <code>golf_ball</code> are
+both small and round). Four objects chosen for shape diversity give <b>three distinct
+attractors</b>: <code>banana</code>→<code>mustard_bottle</code>,
+<code>mug</code>→<code>bowl</code>, <code>dice</code>/<code>strawberry</code>→<code>golf_ball</code>.
+<b>The mechanism is a shared perceptual prior, not coordination</b>, and voting adds
++5.00 pp (n.s.) — 57.50% of the agreement survives with the vote path disabled.
+See <code>reports/p15-four-holdout.md</code>.</td></tr>
+<tr><td><b>P16</b><br><span class="tag g">DONE</span></td>
+<td><b>The per-object baseline, and the confidence rescue — refuted.</b> No new runs:
+re-reads P15's committed data, as P8 did with P7. <b>Unanimity is 100.00% when the system is
+right (<code>bowl</code>, trained) and 100.00% when it is wrong (<code>strawberry</code>,
+held out).</b> Identical at the read-out.<br><br>
+The obvious repair — trust agreement only when modules are confident — <b>fails, and
+inverts on the worst case</b>: <code>strawberry</code> carries <b>more</b> evidence than the
+correct case (+4.02, t(4)=4.70) while being wrong in every episode. Any threshold admitting
+the correct case admits it too.<br><br>
+Constructive: evidence orders <code>mug</code>(4.6) &lt; <code>banana</code>(5.9) &lt;
+<code>dice</code>(15.3) &lt; <code>strawberry</code>(25.2), tracking <b>how close the unseen
+object is to a trained one</b> — a usable novelty signal, a misleading correctness one.
+See <code>reports/p16-baseline-and-confidence.md</code>.</td></tr>
+<tr><td><b>Next</b></td>
+<td><b>PolyBrains is paused here by Nadi, 2026-08-20.</b> Work moves to the polymathic
+verification agent (<code>~/PROPOSAL-polymath-verifier.md</code>). The open items are
+recorded in <code>NEXT-SESSION.md</code>: restate H1's second clause (disagreement is
+largely a function of how novel the <em>input</em> is, a property of the input rather than
+of the modules); P13 remains built, gated and <b>not run</b>, with <code>sep004</code>
+needing replacement by 0.02.</td></tr>
+<tr><td><b>Then</b></td>
+<td>Power the two contrasts stuck at t≈−1.5 and t≈−0.6, and argue for a criterion rather
+than pick one.</td></tr>
+</tbody>
+</table>
+<p style="margin:14px 0 0;font-weight:600">Publication decision is Nadi's and has not been
+taken.</p>
+</div>
+
+<div class="panel">
+<h3 style="margin-top:0">Decisions taken 2026-08-18</h3>
+<table style="margin:0">
+<tbody>
+<tr><td style="width:30%"><b>Venue</b></td><td>Journal. So H1, H2 <em>and</em> the rival
+analysis are all in scope; CP-2 is load-bearing rather than optional.</td></tr>
+<tr><td><b>Upstream posture</b></td><td>Keep the dissent instrumentation in our own layer
+until the paper is out, then offer it upstream. No CLA needed yet.</td></tr>
+<tr><td><b>Polymath scope</b></td><td>Attempt all six properties in §4.2, with the weight on
+<b>H2 (manipulation resistance)</b>. If time is short, H2 survives and the rest are cut.</td></tr>
+<tr><td><b>Compute</b></td><td>No external compute. Scale the project down instead, and
+determine empirically what hardware would be needed. <b>CP-0 shows this is not currently a
+constraint.</b></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="claim">1. The claim we are willing to be wrong about</h2>
+
+<p>The failure mode of this genre is a paper that maps cognitive-science vocabulary onto a
+neuroscience theory and stops. That is unfalsifiable, and reviewers know it. So the
+project commits up front to one narrow claim that could lose.</p>
+
+<div class="panel acc">
+<h3 style="margin-top:0">Primary hypothesis (H1)</h3>
+<p style="margin-bottom:0">A voting system whose modules each hold a <em>complete</em> model in
+its own reference frame transfers to out-of-distribution inputs better than an
+otherwise-identical system with a single shared frame — <b>and the size of that advantage
+scales with how much the modules disagree during inference</b>, not with how many modules
+there are.</p>
+</div>
+
+<p>The second clause is what makes it losable. If the advantage tracks module <em>count</em>
+rather than module <em>disagreement</em>, H1 is false and we report that. It also gives an
+immediate control: add modules that are near-copies of each other. Under H1 they buy
+nothing.</p>
+
+<div class="panel acc">
+<h3 style="margin-top:0">Secondary hypothesis (H2) — the manipulation clause</h3>
+<p style="margin-bottom:0">Weighting votes by each module's <em>in-domain</em> confidence
+destroys the OOD advantage. A single high-confidence module can capture the consensus,
+which is the computational form of "harder to manipulate through a single narrative"
+failing.</p>
+</div>
+
+<p>H2 is the one we expect to be most informative, because Monty's current vote rule is
+already close to the failure case, as §3 shows.</p>
+
+<div class="panel warn">
+<h3 style="margin-top:0">A limit on what any of this measures &mdash; Nadi, 2026-08-20</h3>
+<p><b>A consensus does not need to be true.</b> Given a question whose alternatives are all
+wrong and no option to abstain, agreeing is the <em>rational</em> move: dissent costs
+something and buys nothing. A brain can accept a false premise as truth when the situation
+requires it, and the answer that fits the moment is the one it takes &mdash; not the one
+that is 100% right.</p>
+<p><b>This project could not see that, by construction.</b> Every experiment before P14
+evaluated objects that were in the pretrained set: <code>train_distinctobj_predefined.yaml</code>
+and <code>eval_distinctobj_random.yaml</code> carry the <em>identical</em> 10-object list.
+The correct answer was always inside the hypothesis space, so "does agreement imply
+correctness" was only ever asked under the one condition that flatters it. Every metric here
+scores against a known target, and a system that only measures truth-tracking cannot observe
+convergence that is not about truth.</p>
+<p style="margin-bottom:0"><b>P14 and P15 tested it and it holds.</b> With the target absent
+from graph memory: <b>90.00% unanimity at 0.00% accuracy</b> (P14), and across four held-out
+objects a range of <b>20% to 100%</b> unanimity, all of it wrong (P15). <b>Most of that
+agreement is present with the vote path disabled</b> &mdash; so the mechanism is not
+inspectors deferring to each other but a <em>shared perceptual prior</em>: modules trained
+alike map an unseen object to the same nearest neighbour. The agreement is determined before
+any vote is cast. Reasoning: <code>reports/reconsideration-consensus.md</code>.</p>
+</div>
+
+<div class="panel acc">
+<h3 style="margin-top:0">What this does to H1 &mdash; the read-out, not the hypothesis</h3>
+<p><b>H1 is not refuted.</b> What P14/P15 compromise is the <em>read-out</em>: any unanimity
+figure in this project measures correctness <b>plus</b> a similarity constant, and nothing
+so far separates the two. P8's headline &mdash; voting lifting unanimity from 10.80% to
+41.00% &mdash; was read as agreement about a correct answer; ~85% unanimity is reachable
+here with no voting and no correct answer available at all.</p>
+<p><b>H1's second clause needs restating.</b> It scales the advantage with module
+<em>disagreement</em>. P15 shows disagreement is largely a function of <b>how novel the
+input is</b> &mdash; a property of the input, not of the modules. Unanimity was 100% for
+<code>strawberry</code> (very close to a trained object) and 20% for <code>mug</code>
+(a handle no trained object shares).</p>
+<p><b>The publishable relation:</b> false consensus is highest exactly where the
+unknown resembles the known, and lowest where the input is genuinely novel. <em>A system
+agreeing confidently is evidence that the input looked familiar, not that the answer is
+right.</em></p>
+<p style="margin-bottom:0"><b>P16 closes the obvious escape.</b> Weighting by confidence
+does not separate true from false consensus: the most confidently held answer in the sweep
+is a <em>wrong</em> one, significantly more confident than the correct case. So
+<b>agreement, confidence and correctness are three different things</b>, and in this
+substrate the first two are uninformative about the third. Every experiment before P14
+measured only agreement and read it as evidence about correctness.</p>
+</div>
+
+<h3>What we are explicitly not claiming</h3>
+<ul>
+<li>Not that cortical columns and human polymaths are the same mechanism. The analogy
+motivates the design; it is not evidence for it.</li>
+<li>Not that Monty is a model of a polymath. It is a testbed with the right shape.</li>
+<li>Not that the polymath list of properties is validated psychology. It is our design
+brief, sourced from a practitioner's intuition, and treated as such.</li>
+</ul>
+
+<h2 id="state">2. What already exists</h2>
+
+<h3>2.1 The theory line</h3>
+<table>
+<thead><tr><th>Work</th><th>Year</th><th>What it gives us</th></tr></thead>
+<tbody>
+<tr><td>Hawkins &amp; Ahmad, <em>Why Neurons Have Thousands of Synapses</em>
+  (Front. Neural Circuits 10:23)</td><td>2016</td>
+  <td>The neuron as <b>predictor</b>, not summer. Distal synapses recognise context and
+  depolarise the cell into an "expecting" state; a depolarised cell fires earlier and
+  inhibits its neighbours. Sparse distributed codes make ~20 synapses enough to recognise a
+  pattern with false-match probability ~10<sup>-18</sup>.</td></tr>
+<tr><td>Hawkins et al., <em>A Framework for Intelligence and Cortical Function Based on
+  Grid Cells</em> (Front. Neural Circuits 12:121)</td><td>2019</td>
+  <td><b>Reference frames.</b> Cortical grid cells give every column an object-centric
+  location space. Each column learns a <em>complete</em> model of an object, not a feature
+  of it. This is the load-bearing paper for us.</td></tr>
+<tr><td>Clay, Leadholm &amp; Hawkins, <em>The Thousand Brains Project</em>
+  (arXiv:2412.18354)</td><td>2024</td>
+  <td>The white paper. Learning modules, the Cortical Messaging Protocol (CMP),
+  hierarchical <em>and</em> non-hierarchical interaction.</td></tr>
+<tr><td>Leadholm et al., <em>Thousand-Brains Systems</em>
+  (Neural Computation 38(6):845–896)</td><td>2026</td>
+  <td>The empirical case vs deep learning: rapid, robust learning and inference. Has a
+  replication repo, so it is a real baseline rather than a manifesto.</td></tr>
+</tbody>
+</table>
+
+<h3>2.2 The code line</h3>
+<p><code>numenta/*</code> is effectively closed: <code>nupic-legacy</code> and
+<code>htmresearch</code> are archived, last real activity 2024. The live work is
+<code>thousandbrainsproject/*</code>, 34 repos, pushed within days of this writing.</p>
+
+<table>
+<thead><tr><th>Repo</th><th>Why it matters here</th></tr></thead>
+<tbody>
+<tr><td><code>tbp.monty</code></td><td>The system. MIT, Python, 576 stars, active. Learning
+  modules, voting, evidence matching, benchmark suite.</td></tr>
+<tr><td><code>tbp.tbs_sensorimotor_intelligence</code></td><td>Replication code for the
+  Neural Computation paper, <b>including the ViT baseline</b>. This is our comparison
+  harness — we do not have to build one.</td></tr>
+<tr><td><code>tbp.monty_project_template</code></td><td>Official template for "use Monty for
+  your paper". This is the intended entry point for exactly what we are doing.</td></tr>
+<tr><td><code>monty_lab</code></td><td>Archived experiment notebooks. Useful for seeing what
+  they already tried and dropped.</td></tr>
+<tr><td><code>tbp.floppy</code></td><td>FLOP counter. Relevant if we make a compute-parity
+  claim.</td></tr>
+</tbody>
+</table>
+
+<div class="panel">
+<b>Licensing note.</b> Monty is MIT — permissive, no copyleft obligation. The older Numenta
+research repos are AGPL-3.0. If we ever lift code from <code>nupic.research</code> or
+<code>htmresearch</code>, the licence changes character. Default: build on Monty only.
+</div>
+
+<h2 id="gap">3. The gap — verified at the pinned sha <span class="tag g">CP-1 confirmed</span></h2>
+
+<p>We read Monty's voting implementation rather than its documentation, then re-verified every
+claim against the pinned sha with an executable probe
+(<code>tests/cp1_probe_vote_path.py</code>, exit 0). Full write-up:
+<code>reports/vote-path.md</code>.</p>
+
+<div class="panel">
+<b>There are two vote implementations, and only one is ours.</b>
+<code>graph_matching.py</code> serves displacement/feature-matching LMs;
+<b><code>evidence_matching/model.py</code></b> serves evidence LMs. Our 5-LM configs use
+<code>evidence_5lm_nn10_dod003</code> → <code>EvidenceGraphLM</code>, so the second is the
+path that matters. Its <code>_combine_votes</code> transforms votes into the receiving
+module's frame and <em>concatenates</em> them, with no per-object tallying.
+</div>
+
+<h4>How voting actually works today</h4>
+<ol>
+<li>Each learning module computes evidence per hypothesis per object graph.</li>
+<li><code>send_out_vote()</code> (<code>learning_module.py:403</code>) emits only hypotheses
+  whose <em>scaled</em> evidence exceeds <code>vote_evidence_threshold</code> (default
+  <code>0.8</code>). Each vote is a <code>Message</code> carrying location, pose and a
+  <code>confidence</code>.</li>
+<li>Which module hears which is a static <code>lm_to_lm_vote_matrix</code>, assigned once at
+  <code>monty_base.py:99</code> and never mutated. Our 5-LM config is all-to-all.</li>
+<li><code>receive_votes()</code> → <code>_update_evidence_with_vote()</code>
+  (<code>learning_module.py:902</code>) builds a KD-tree over incoming vote locations, takes
+  the <b>3 nearest</b> to each hypothesis, and reduces them with <code>np.ma.max</code> at
+  line 938.</li>
+<li>The result is blended into the module's own evidence, weighted by a scalar
+  <code>vote_weight</code> (default <code>1</code>).</li>
+</ol>
+
+<div class="panel warn">
+<h4 style="margin-top:0">The three findings that define the project — all confirmed</h4>
+<p><b>(a) The aggregation is a max, not a consensus.</b> <code>np.ma.max</code> over the vote
+neighbourhood means the loudest single vote in the radius wins outright.
+<b>Stronger than we first thought:</b> the variable is called
+<code>distance_weighted_vote_evidence</code>, but the weighting is <em>commented out</em> at
+line 940 and upstream's own comment at 936 says "Currently unweighted". Probe: three peers at
+0.95 / 0.42 / 0.40 reduce to <b>0.95</b>; deleting the two agreeing modules gives
+<b>0.95, identical</b>. Two modules agreeing change the outcome by exactly zero. This
+<em>is</em> H2's failure, present by default.</p>
+<p><b>(b) Disagreement is never represented — in the vote path.</b> No variance, entropy or
+spread of incoming votes is computed, stored or transmitted.
+<b>Two corrections from CP-1:</b> (i) an <code>np.std</code> does exist at
+<code>learning_module.py:1159</code>, but it is the spread across <em>object hypotheses
+inside one module</em>, not across modules; (ii) a cross-module agreement mechanism
+<em>does</em> exist — <code>AnyLMsMatch</code> in <code>experiment/match_criteria.py</code>,
+which our config sets to <code>count: 3</code>. But it is a <b>terminal condition that stops
+the episode</b>, a binary count of terminal states. It never feeds back into the vote and
+measures no dispersion. The paper must state this distinction; a reviewer who knows Monty
+will check.</p>
+<p class="q" style="margin-top:14px">Updated 2026-08-19 after P8: this is no longer only a
+definitional footnote. <code>AnyLMsMatch</code> turned out to <b>set the sign of the
+project's headline result</b> — voting harms under it and helps under unanimity, a 33 pp
+swing on identical episodes. Anything the write-up says about the value of voting is
+conditional on this criterion, and the choice has to be argued rather than inherited.
+See <code>reports/p8-unanimity.md</code>.</p>
+<p><b>(c) <code>vote_weight</code> is a static scalar.</b> Confirmed exactly: assigned once at
+<code>learning_module.py:285</code>, read at 951 and 960, and the probe found no other
+assignment in any method of the class. No mechanism makes a module that is repeatedly wrong
+out of domain any quieter.</p>
+</div>
+
+<p>This is good news, not criticism. Monty is honest early-beta code and these are exactly
+the seams a contribution can sit in. It also means our intervention is small and legible:
+<b>we do not fork the architecture, we change the vote rule.</b></p>
+
+<div class="panel acc">
+<h4 style="margin-top:0">Novelty, checked honestly at CP-1</h4>
+<p>Searched every TBP repo, issue, PR and the <code>docs/future-work/</code> tree.
+<code>np.ma.max</code>: <b>0 hits, ever</b>. <code>vote_weight</code>: one spelling fix.
+Consensus voting rule: <b>0</b>.</p>
+<p><b>But <code>docs/future-work/voting-improvements/</code> exists with five planned
+items</b>, and we must not pretend otherwise:</p>
+<ul>
+<li><b>Generalize Voting to Associative Connections</b> (PR #358/#359) — solves object-<em>ID
+  alignment</em> between modules in unsupervised settings. Orthogonal to the aggregation
+  rule.</li>
+<li><b>Clean up and Simplify Voting</b> — <em>partial overlap, and it matters.</em> Proposes
+  filtering votes by orientation agreement before the KD-tree, and explicitly notes votes can
+  "spuriously align" and give "incorrectly positive evidence". Upstream knows voting has a
+  precision problem. They do <b>not</b> propose replacing the max or measuring dispersion.</li>
+<li><b>Outline How to Apply Attention</b> — TBP-owned, scoping. "Emphasize the
+  representations in certain LMs over others… top-down feedback and lateral competition."
+  <b>Adjacent to our adaptive w(t); watch it.</b> Theory only, no implementation.</li>
+<li>Vote on State, and CMP displacements — neither overlaps.</li>
+</ul>
+<p style="margin-bottom:0"><b>Assessment: the contribution is open, but not virgin
+territory.</b> Nobody has proposed measuring disagreement across modules and feeding it back
+into aggregation, and the max reduction has never been raised. The paper must cite these
+items and state what we add beyond them. Claiming the vote rule is unexamined would be false
+and checkable.</p>
+</div>
+
+<figure>
+<svg viewBox="0 0 860 300" role="img" aria-label="Current Monty vote path versus proposed">
+<text x="18" y="24" class="svg-a">CURRENT — max over neighbourhood</text>
+<rect x="18" y="40" width="118" height="46" rx="7" fill="#241f1b" stroke="#2e2823"/>
+<text x="34" y="60" class="svg-l">LM-A</text><text x="34" y="76" class="svg-d">conf 0.95</text>
+<rect x="18" y="98" width="118" height="46" rx="7" fill="#241f1b" stroke="#2e2823"/>
+<text x="34" y="118" class="svg-l">LM-B</text><text x="34" y="134" class="svg-d">conf 0.42</text>
+<rect x="18" y="156" width="118" height="46" rx="7" fill="#241f1b" stroke="#2e2823"/>
+<text x="34" y="176" class="svg-l">LM-C</text><text x="34" y="192" class="svg-d">conf 0.40</text>
+<path d="M136 63 L214 120" stroke="#c9584f" stroke-width="2.4" fill="none"/>
+<path d="M136 121 L214 122" stroke="#3d3630" stroke-width="1.2" fill="none"/>
+<path d="M136 179 L214 126" stroke="#3d3630" stroke-width="1.2" fill="none"/>
+<rect x="216" y="100" width="128" height="46" rx="7" fill="#241f1b" stroke="#c9584f"/>
+<text x="230" y="120" class="svg-l">np.ma.max</text>
+<text x="230" y="136" class="svg-d">KD-tree, k=3</text>
+<path d="M344 123 L400 123" stroke="#c9584f" stroke-width="2.4" fill="none"/>
+<polygon points="400,118 412,123 400,128" fill="#c9584f"/>
+<text x="358" y="112" class="svg-d">0.95</text>
+<rect x="414" y="100" width="110" height="46" rx="7" fill="#241f1b" stroke="#2e2823"/>
+<text x="428" y="124" class="svg-l">consensus</text>
+<text x="18" y="248" class="svg-d">B and C agree with each other and are both ignored.</text>
+<text x="18" y="266" class="svg-d">One confident module sets the answer. No record that the group was split.</text>
+<line x1="560" y1="16" x2="560" y2="284" stroke="#2e2823" stroke-dasharray="4 4"/>
+<text x="588" y="24" class="svg-a">PROPOSED — consensus + dissent</text>
+<rect x="588" y="40" width="112" height="106" rx="7" fill="#241f1b" stroke="#2e2823"/>
+<text x="602" y="62" class="svg-l">same votes</text>
+<text x="602" y="80" class="svg-d">0.95 / 0.42 / 0.40</text>
+<text x="602" y="104" class="svg-d">+ spread σ</text>
+<text x="602" y="122" class="svg-d">+ per-LM w(t)</text>
+<path d="M700 92 L742 92" stroke="#6fa3a0" stroke-width="2.2" fill="none"/>
+<polygon points="742,87 754,92 742,97" fill="#6fa3a0"/>
+<rect x="756" y="62" width="86" height="60" rx="7" fill="#241f1b" stroke="#6fa3a0"/>
+<text x="768" y="86" class="svg-l">consensus</text>
+<text x="768" y="104" class="svg-d">+ dissent</text>
+<text x="588" y="188" class="svg-d">Agreement of B and C is visible.</text>
+<text x="588" y="206" class="svg-d">High σ is reported, not hidden.</text>
+<text x="588" y="224" class="svg-d">w(t) adapts from OOD track record.</text>
+<text x="588" y="242" class="svg-d">System can say "my modules disagree".</text>
+</svg>
+<figcaption>Figure 1 — The single change the project rests on. Everything else is measurement.</figcaption>
+</figure>
+
+<h2 id="theory">4. Theory: the polymath list, mapped honestly</h2>
+
+<p>Thirteen properties were given as the specification. We sort them by whether Thousand
+Brains Theory already explains them, because the ones it does <em>not</em> are the
+contribution.</p>
+
+<h3>4.1 Already explained by the theory <span class="tag g">restatement</span></h3>
+<table>
+<thead><tr><th>Polymath property</th><th>TBT mechanism</th></tr></thead>
+<tbody>
+<tr><td>Recognise patterns before being able to explain them</td>
+  <td>Depolarised cells fire earlier and win the inhibition race. Recognition
+  <em>precedes</em> the explanatory path by construction (2016 paper).</td></tr>
+<tr><td>Compress information into simple principles</td>
+  <td>Sparse distributed representations. Compression is not a virtue practised, it is what
+  the substrate does.</td></tr>
+<tr><td>Detect when complexity hides weak thinking</td>
+  <td>Prediction error. Unpredicted input bursts. Complexity with no compressible structure
+  fails to settle into a stable frame.</td></tr>
+<tr><td>Continually rebuild understanding</td>
+  <td>Continual associative learning, no separate training phase, no catastrophic
+  forgetting. Genuinely unusual and already implemented.</td></tr>
+<tr><td>Translate ideas between fields</td>
+  <td>Applying a reference frame learned in domain A to input from domain B. Darwin taking
+  Malthus's frame to biology is a module voting outside its training set.</td></tr>
+<tr><td>Think in systems rather than isolated events</td>
+  <td>Object compositionality; models of models via the CMP.</td></tr>
+<tr><td>Notice where experts get trapped</td>
+  <td>A module with one sensor has one frame. Not stupid — unvoted.</td></tr>
+</tbody>
+</table>
+
+<p>These seven are <b>not the paper</b>. Writing them up as findings would be exactly the
+failure mode we named in §1. They go in the motivation section, labelled as motivation.</p>
+
+<h3>4.2 Not explained — the contribution surface <span class="tag r">open</span></h3>
+<table>
+<thead><tr><th>Polymath property</th><th>What is missing</th><th>Where it lands</th></tr></thead>
+<tbody>
+<tr><td>Recognise weaknesses in one's own thinking</td>
+  <td>No representation of vote disagreement. A module cannot know the group is split.</td>
+  <td>Dissent signal σ — CP-3</td></tr>
+<tr><td>Harder to manipulate through a single narrative</td>
+  <td><code>np.ma.max</code> is winner-take-all. One loud module captures consensus.</td>
+  <td>Consensus rule — CP-3, tested in E2</td></tr>
+<tr><td>Become a beginner without losing confidence</td>
+  <td>No mechanism for a module to hold low evidence and still be heard, or to be
+  deliberately recruited outside its domain.</td>
+  <td>Adaptive w(t) — CP-4</td></tr>
+<tr><td>Ask questions that change the problem</td>
+  <td>Monty has goal-state generation (<code>goal_generation.py</code>, 44 KB) but action
+  selection is not driven by disagreement.</td>
+  <td>Stretch — CP-7, may be cut</td></tr>
+<tr><td>Use multiple mental models simultaneously</td>
+  <td>Partly present. Modules run in parallel, but the static
+  <code>lm_to_lm_vote_matrix</code> fixes who hears whom before the problem is seen.</td>
+  <td>Dynamic routing — CP-6</td></tr>
+<tr><td>Learn from people with different expertise</td>
+  <td>Cross-modal voting exists; cross-<em>domain</em> credit assignment does not.</td>
+  <td>Folded into w(t) — CP-4</td></tr>
+</tbody>
+</table>
+
+<h3>4.3 The rival theories <span class="tag g">CP-2 done</span></h3>
+<div class="panel">
+<p style="margin-top:0">Gentner's <b>structure-mapping theory</b> (1983, Cognitive Science
+7:155–170) is the established formal account of "translate ideas from one field into
+another". Relations between objects map, attributes do not, and the selection rule is the
+<b>systematicity principle</b>: "A predicate that belongs to a mappable system of mutually
+interconnecting relationships is more likely to be imported into the target than is an
+isolated predicate." Crucially the rules are <em>syntactic</em> — independent of domain
+content.</p>
+<p><b>E3 is the fork.</b> Structure-mapping predicts near-clone modules transfer as well as
+diverse ones, provided each holds the same systematic relational structure — diversity per se
+is not its mechanism. H1 predicts clones buy nothing. If clones do as well, <b>H1's second
+clause is false</b> and the result favours systematicity.</p>
+<p style="margin-bottom:0"><b>We do not claim to refute structure-mapping.</b> The honest
+position is that a reference frame may be the cortical <em>mechanism</em> for what Gentner
+described at the computational level; H1 adds a claim about disagreement that
+structure-mapping does not make. One limitation we state ourselves: Gentner's relations hold
+between propositions, while Monty's modules vote on 3D poses. Whether a pose hypothesis is a
+"relation" in his sense is arguable.</p>
+</div>
+
+<div class="panel">
+<p style="margin-top:0"><b>The ensemble-diversity literature is the more dangerous rival.</b>
+Rubinstein et al. (arXiv:2409.16797) "encourage the ensemble members to disagree" on hard
+samples and report "large benefits from the diversification" for OOD generalisation. That is
+uncomfortably close to H1: induced disagreement, measured OOD benefit.</p>
+<p>The counterweight is Ortega et al. (PMLR v151), who derive "the exact trade-off that
+exists between this diversity measure, the performance of the individual predictors and the
+generalisation error of the ensemble". <b>Diversity is not free</b> — members made more
+diverse are usually made individually worse, and the ensemble gains only while the diversity
+outruns that loss. This is the strongest reason to expect H1 to fail.</p>
+<p style="margin-bottom:0"><b>Three differences we must measure or drop:</b> (i) ensemble
+members share one input representation and vote on <em>labels</em>, TBT modules hold complete
+models in different reference frames and vote on <em>poses and locations</em>; (ii) ensemble
+diversity is induced by a training objective, ours is a consequence of embodiment;
+(iii) ensembles aggregate by averaging or majority vote — <b>no ensemble paper we found
+defends a max-reduction</b>, which is exactly what CP-1 confirmed Monty does. <b>E2 is the
+fork here</b>, because ensemble theory says little about confidence-weighted aggregation
+under a max it never uses.</p>
+</div>
+
+<div class="panel acc">
+<b>CP-2 gate met.</b> Two experiments do discriminative work: <b>E3</b> forks
+structure-mapping against H1, <b>E2</b> forks the ensemble account against H2. Full analysis
+with quotations and the dishonesty checklist: <code>reports/rivals.md</code>.
+</div>
+
+<h2 id="arch">5. Architecture</h2>
+
+<figure>
+<svg viewBox="0 0 860 430" role="img" aria-label="PolyBrains architecture layers">
+<rect x="20" y="18" width="820" height="86" rx="9" fill="#1a1714" stroke="#2e2823"/>
+<text x="38" y="42" class="svg-a">LAYER 0 · UPSTREAM, UNMODIFIED</text>
+<rect x="40" y="52" width="150" height="38" rx="6" fill="#241f1b" stroke="#3d3630"/>
+<text x="54" y="76" class="svg-l">tbp.monty</text>
+<rect x="204" y="52" width="176" height="38" rx="6" fill="#241f1b" stroke="#3d3630"/>
+<text x="218" y="70" class="svg-l">tbs_sensorimotor</text>
+<text x="218" y="84" class="svg-d">ViT baseline</text>
+<rect x="394" y="52" width="140" height="38" rx="6" fill="#241f1b" stroke="#3d3630"/>
+<text x="408" y="76" class="svg-l">YCB dataset</text>
+<rect x="548" y="52" width="140" height="38" rx="6" fill="#241f1b" stroke="#3d3630"/>
+<text x="562" y="76" class="svg-l">benchmarks/</text>
+<text x="702" y="76" class="svg-d">pinned by sha</text>
+
+<rect x="20" y="118" width="820" height="128" rx="9" fill="#1a1714" stroke="#d98e4a"/>
+<text x="38" y="142" class="svg-a">LAYER 1 · POLYBRAINS — THE ONLY THING WE WRITE</text>
+<rect x="40" y="154" width="186" height="76" rx="6" fill="#241f1b" stroke="#d98e4a"/>
+<text x="54" y="176" class="svg-l">ConsensusVoteMixin</text>
+<text x="54" y="194" class="svg-d">replaces np.ma.max</text>
+<text x="54" y="210" class="svg-d">emits σ (dissent)</text>
+<rect x="240" y="154" width="186" height="76" rx="6" fill="#241f1b" stroke="#d98e4a"/>
+<text x="254" y="176" class="svg-l">AdaptiveWeight</text>
+<text x="254" y="194" class="svg-d">vote_weight → w(t)</text>
+<text x="254" y="210" class="svg-d">OOD track record</text>
+<rect x="440" y="154" width="186" height="76" rx="6" fill="#241f1b" stroke="#d98e4a"/>
+<text x="454" y="176" class="svg-l">DissentRouter</text>
+<text x="454" y="194" class="svg-d">dynamic vote matrix</text>
+<text x="454" y="210" class="svg-d">CP-6, may be cut</text>
+<rect x="640" y="154" width="180" height="76" rx="6" fill="#241f1b" stroke="#d98e4a"/>
+<text x="654" y="176" class="svg-l">metrics.py</text>
+<text x="654" y="194" class="svg-d">D-index, capture</text>
+<text x="654" y="210" class="svg-d">rate, OOD delta</text>
+
+<rect x="20" y="260" width="820" height="86" rx="9" fill="#1a1714" stroke="#2e2823"/>
+<text x="38" y="284" class="svg-a">LAYER 2 · EXPERIMENTS</text>
+<rect x="40" y="294" width="120" height="38" rx="6" fill="#241f1b" stroke="#6fa3a0"/>
+<text x="54" y="318" class="svg-l">E0 replicate</text>
+<rect x="174" y="294" width="120" height="38" rx="6" fill="#241f1b" stroke="#6fa3a0"/>
+<text x="188" y="318" class="svg-l">E1 diversity</text>
+<rect x="308" y="294" width="120" height="38" rx="6" fill="#241f1b" stroke="#6fa3a0"/>
+<text x="322" y="318" class="svg-l">E2 capture</text>
+<rect x="442" y="294" width="120" height="38" rx="6" fill="#241f1b" stroke="#6fa3a0"/>
+<text x="456" y="318" class="svg-l">E3 clones</text>
+<rect x="576" y="294" width="140" height="38" rx="6" fill="#241f1b" stroke="#6fa3a0"/>
+<text x="590" y="318" class="svg-l">E4 novice</text>
+
+<rect x="20" y="360" width="820" height="56" rx="9" fill="#1a1714" stroke="#2e2823"/>
+<text x="38" y="384" class="svg-a">LAYER 3 · RECORD</text>
+<text x="38" y="404" class="svg-d">TODO.md checkpoints · pre-registered predictions · run log incl. failures · DECISIONS.md</text>
+</svg>
+<figcaption>Figure 2 — We add one thin layer. Upstream is pinned by commit sha and never edited.</figcaption>
+</figure>
+
+<h3>5.1 Repository shape</h3>
+<pre><code>~/PolyBrains/
+├── AGENTS.md            local DOX contract
+├── TODO.md              checkpoints, updated at each CP, never at the end
+├── DECISIONS.md         why, including what we rejected
+├── PREDICTIONS.md       written BEFORE each run, append-only, never edited
+├── docs/
+│   └── plan.html        this file
+├── src/polybrains/
+│   ├── consensus.py     ConsensusVoteMixin
+│   ├── weights.py       AdaptiveWeight
+│   ├── routing.py       DissentRouter        (CP-6, optional)
+│   └── metrics.py       D-index, capture rate, OOD delta
+├── configs/             one config per experiment arm
+├── tests/               invariants + gates
+└── reports/
+    ├── runs/            raw output, one dir per run, immutable
+    └── figures/</code></pre>
+
+<h3>5.2 The three measures</h3>
+<div class="grid2">
+<div class="panel">
+<h4 style="margin-top:0">D-index (disagreement)</h4>
+<p style="margin-bottom:0">Spread of incoming vote confidences and pose hypotheses across
+modules at each step. Normalised 0–1. This is the independent variable H1 says the OOD
+advantage should track. <b>Definition must be frozen in CP-3 before any result is
+looked at</b>, or we will tune it into significance.</p>
+</div>
+<div class="panel">
+<h4 style="margin-top:0">Capture rate</h4>
+<p style="margin-bottom:0">Fraction of inference steps where the consensus equals the single
+highest-confidence module's vote. Under <code>np.ma.max</code> this should be near 1 by
+construction — that is the sanity check that our instrumentation is correct before we change
+anything.</p>
+</div>
+</div>
+<div class="panel">
+<h4 style="margin-top:0">OOD delta</h4>
+<p style="margin-bottom:0">Accuracy on held-out perturbations minus accuracy in domain, per
+arm. H1 predicts multi-frame beats single-frame on the delta while being
+<em>no better, possibly worse,</em> in domain. If multi-frame simply wins everywhere, the
+result is less interesting and probably an artefact — we would suspect capacity, not
+structure.</p>
+</div>
+
+<h2 id="exp">6. Experiments</h2>
+
+<div class="panel warn">
+<b>Pre-registration rule.</b> For each experiment, the predicted direction and the threshold
+that would count as a failure go into <code>PREDICTIONS.md</code> <em>before</em> the run,
+committed with a sha. "Honest" collapses into "we report the runs we liked" without this,
+and it does so unintentionally.
+</div>
+
+<table>
+<thead><tr><th>ID</th><th>Question</th><th>Arms</th><th>H1/H2 outcome</th></tr></thead>
+<tbody>
+<tr><td><b>E0</b></td><td>Can we reproduce upstream at all?</td>
+  <td>Stock Monty on <code>ycb_10objs</code></td>
+  <td>Gate only. No hypothesis. If this fails nothing downstream means anything.</td></tr>
+<tr><td><b>E1</b></td><td>Does multi-frame beat single-frame OOD?</td>
+  <td>N modules distinct frames vs 1 module vs N-capacity-matched single</td>
+  <td>H1 supported if OOD delta favours multi-frame <em>and</em> tracks D-index</td></tr>
+<tr><td><b>E2</b></td><td>Does confidence weighting destroy it?</td>
+  <td>consensus vs <code>np.ma.max</code> vs confidence-weighted</td>
+  <td>H2 supported if capture rate rises and OOD delta collapses together</td></tr>
+<tr><td><b>E3</b></td><td>Is it diversity or is it just count?</td>
+  <td>N diverse modules vs N near-clone modules</td>
+  <td><b>The control that can kill H1.</b> If clones do as well, disagreement is not the
+  mechanism and we say so plainly.</td></tr>
+<tr><td><b>E4</b></td><td>Can a low-evidence module still contribute?</td>
+  <td>w(t) adaptive vs static, module deliberately untrained on the test object</td>
+  <td>"Confident beginner". Exploratory, no directional prediction registered.</td></tr>
+</tbody>
+</table>
+
+<div class="panel">
+<b>Noise floor first.</b> Before E1, run the same arm 5+ times with different seeds and
+record the spread. Any effect smaller than that spread is not an effect. This number goes in
+the paper.
+</div>
+
+<h2 id="cp">7. Checkpoints</h2>
+
+<p>Each checkpoint has a gate that is a command with an observable result, not a judgement.
+<code>TODO.md</code> is updated at the checkpoint, not at the end. Blocked work is written
+down with its reason — silent omission reads as coverage.</p>
+
+<div class="cp" style="border-left-color:var(--ok)">
+<h4>CP-0 · Ground truth on the machine <span class="tag g">done · d22d5b9</span></h4>
+<ul class="chk" style="color:var(--dim)">
+<li style="text-decoration:line-through">Clone <code>tbp.monty</code>, pin the sha —
+  <code>0c81b1f</code>, v0.46.0</li>
+<li style="text-decoration:line-through">Python env — <b>3.12.3</b>, not 3.8; uv venv, CPU
+  torch 2.13</li>
+<li style="text-decoration:line-through">Fetch YCB — 10 objects, 64 MB, direct from the
+  official S3 bucket via <code>tools/fetch_ycb.sh</code></li>
+<li style="text-decoration:line-through">Record hardware and wall-clock</li>
+</ul>
+<p class="gate"><b>Gate met.</b> 590 tests pass (1 benign hypothesis timing failure).
+Pretrain 5 LMs <b>47.4 s</b>, voting eval 50 episodes <b>57.7 s</b>, peak RSS 1.3 GB, exit 0.
+Full write-up: <code>reports/cp0-feasibility.md</code>.<br>
+<b>Surprise:</b> HabitatSim is unavailable on Linux, so the project is committed to MuJoCo.
+That was not in the original risk table and it is now the top risk. <b>The 60% accuracy
+figure from this run is a liveness check, not a baseline</b> — the model saw one rotation in
+training and random rotations at test.</p>
+</div>
+
+<div class="cp" style="border-left-color:var(--ok)">
+<h4>CP-1 · Read the vote path properly <span class="tag g">done</span></h4>
+<ul class="chk" style="color:var(--dim)">
+<li style="text-decoration:line-through">Line-by-line notes on the four vote methods against
+  the pinned sha</li>
+<li style="text-decoration:line-through">Confirm or refute the three §3 findings —
+  <b>all three confirmed</b>, plus an executable probe</li>
+<li style="text-decoration:line-through">Map <code>lm_to_lm_vote_matrix</code> construction —
+  static, all-to-all for 5 LMs</li>
+<li style="text-decoration:line-through">Novelty check across repos, PRs and
+  <code>future-work/</code></li>
+</ul>
+<p class="gate"><b>Gate met.</b> <code>reports/vote-path.md</code> with line numbers and sha;
+<code>tests/cp1_probe_vote_path.py</code> exits 0.<br>
+<b>Corrections applied to §3:</b> (i) our experiments use
+<code>evidence_matching/model.py</code>, not <code>graph_matching.py</code>; (ii) dispersion
+is absent from the <em>vote path</em>, though an unrelated <code>np.std</code> exists
+within-LM; (iii) <code>AnyLMsMatch</code> is an existing cross-module agreement mechanism, but
+it is a terminal condition rather than a vote input, and the paper must say so.</p>
+</div>
+
+<div class="cp" style="border-left-color:var(--ok)">
+<h4>CP-2 · Rival theories written down <span class="tag g">done</span></h4>
+<ul class="chk" style="color:var(--dim)">
+<li style="text-decoration:line-through">Gentner structure-mapping: predictions for E1–E3</li>
+<li style="text-decoration:line-through">Ensemble-diversity literature, supporting <em>and</em> failing sides</li>
+<li style="text-decoration:line-through">Explicit measurable divergence identified</li>
+</ul>
+<p class="gate"><b>Gate met.</b> <code>reports/rivals.md</code>. <b>E3</b> forks
+structure-mapping against H1 — systematicity predicts clones transfer as well as diverse
+modules, H1 predicts clones buy nothing. <b>E2</b> forks the ensemble account against H2.<br>
+<b>The uncomfortable finding:</b> Rubinstein et al. already induce disagreement and report OOD
+gains, so H1 risks rediscovering a known ML result on a new substrate. Ortega et al.'s
+diversity/individual-performance trade-off is the strongest reason to expect H1 to fail. Both
+are now in the plan rather than omitted.</p>
+</div>
+
+<div class="cp">
+<h4>CP-3 · Consensus rule + dissent signal <span class="tag b">core</span></h4>
+<ul class="chk">
+<li><code>ConsensusVoteMixin</code>: replace max-over-neighbourhood with a consensus
+  reduction that rewards mutual agreement</li>
+<li>Emit D-index per step; freeze its definition <b>before</b> looking at any accuracy</li>
+<li>Instrument capture rate on <em>stock</em> Monty first as the sanity check</li>
+</ul>
+<p class="gate"><b>Gate:</b> stock capture rate ≈ 1 as predicted (instrumentation correct),
+and E0 accuracy is unchanged when the mixin is configured to imitate the old rule
+(behaviour-preserving refactor proven, not assumed).</p>
+</div>
+
+<div class="cp">
+<h4>CP-4 · Adaptive vote weight <span class="tag b">core</span></h4>
+<ul class="chk">
+<li><code>vote_weight</code> scalar → w(t) updated from per-module OOD track record</li>
+<li>Guard against runaway: a module cannot silence itself permanently</li>
+<li>Ablation config with w(t) frozen, for a clean comparison</li>
+</ul>
+<p class="gate"><b>Gate:</b> w(t) demonstrably moves on a toy task where one module is
+deliberately unreliable, and the run log shows it. No accuracy claim yet.</p>
+</div>
+
+<div class="cp">
+<h4>CP-5 · E0–E3 with pre-registration <span class="tag b">core</span></h4>
+<ul class="chk">
+<li>Noise floor: 5 seeds, same arm, spread recorded</li>
+<li><code>PREDICTIONS.md</code> committed before each run</li>
+<li>E0 replicate → E1 diversity → E2 capture → E3 clone control</li>
+<li>Every run directory immutable, including the ones that failed</li>
+</ul>
+<p class="gate"><b>Gate:</b> results table with effect sizes <em>relative to the noise
+floor</em>, and an explicit statement for each of H1 and H2: supported, refuted, or
+underpowered. "Underpowered" is a permitted and expected outcome.</p>
+</div>
+
+<div class="cp">
+<h4>CP-6 · Dissent-driven routing <span class="tag">stretch</span></h4>
+<p>Make <code>lm_to_lm_vote_matrix</code> dynamic — modules attend to those they disagree
+with. Cut without regret if CP-5 has consumed the time.</p>
+<p class="gate"><b>Gate:</b> either a result, or a written decision not to do it and why.</p>
+</div>
+
+<div class="cp">
+<h4>CP-7 · Disagreement-driven action <span class="tag">stretch</span></h4>
+<p>Hook D-index into <code>goal_generation.py</code> so the agent moves to resolve
+disagreement. This is "ask questions that change the problem" in its literal sensorimotor
+form. Most likely cut.</p>
+<p class="gate"><b>Gate:</b> same as CP-6.</p>
+</div>
+
+<div class="cp">
+<h4>CP-8 · Write-up <span class="tag b">core</span></h4>
+<ul class="chk">
+<li>Motivation section clearly labels the polymath mapping as motivation, not finding</li>
+<li>Negative and null results included, in the body, not an appendix</li>
+<li>Rival-theory section from CP-2 kept intact even if unflattering</li>
+<li>Working record cited: the checkpoints that failed are part of the contribution</li>
+</ul>
+<p class="gate"><b>Gate:</b> a reader can reproduce every number from the pinned sha, the
+configs and the run directories.</p>
+</div>
+
+<h2 id="risk">8. Risks, in order of how likely they are to sink this</h2>
+
+<table>
+<thead><tr><th>Risk</th><th>Severity</th><th>Response</th></tr></thead>
+<tbody>
+<tr><td><b>Compute.</b> <s>i5-9600K, 15.5 GiB, no CUDA path.</s> <b>Measured at CP-0:
+pretrain 47 s, voting eval 58 s, peak RSS 1.3 GB.</b></td>
+  <td><span class="tag g">resolved</span></td>
+  <td>Not a constraint at the 10-object scale. Re-measure before any move to the 77-object
+  set. The ViT baseline is still unmeasured and remains the one open compute question.</td></tr>
+<tr><td><b>HabitatSim is unavailable on Linux.</b> The PyPI wheel is
+  <code>macosx_13_0_arm64</code>, cp310 only. Found at CP-0.</td>
+  <td><span class="tag r">high</span></td>
+  <td><b>The replacement for the compute risk.</b> We are committed to MuJoCo. Three
+  consequences: (i) 17 integration tests skip, including
+  <code>evidence_lm_test.py</code> — the test for the very module we will modify, so CP-3
+  must write our own vote-path integration test; (ii) upstream's published benchmark table is
+  Habitat-based, so <b>all our comparisons must be internal</b>, arm against arm; (iii)
+  object placement needs re-tuning, see below.</td></tr>
+<tr><td><b>MuJoCo object placement.</b> The habitat-tuned <code>rotations_all</code> set puts
+  objects outside the camera's view — CP-0 hit
+  <code>ValueError: no visible target object</code>.</td>
+  <td><span class="tag">medium</span></td>
+  <td>CP-0 worked around it with a single rotation, which is why its 60% accuracy is a
+  liveness check and <b>not</b> a baseline. Real fix before CP-5: re-tune the camera or
+  define a MuJoCo-valid rotation set.</td></tr>
+<tr><td><b>The effect is ensembling.</b> H1 holds but for reasons already known in ML.</td>
+  <td><span class="tag r">high</span></td>
+  <td>E3 clone control plus the D-index scaling clause. If the advantage tracks count rather
+  than disagreement, we report ensembling and stop claiming novelty.</td></tr>
+<tr><td><b>Unfalsifiable drift.</b> The polymath mapping is seductive and will try to become
+  the paper.</td>
+  <td><span class="tag r">high</span></td>
+  <td>§4.1 is fenced off as motivation. The abstract must state a measurable result in its
+  first two sentences or the paper is not ready.</td></tr>
+<tr><td><b>Upstream moves.</b> 34 active repos, early beta, frequent breaking changes.</td>
+  <td><span class="tag g">resolved</span></td>
+  <td>Pinned at <code>0c81b1f</code> (v0.46.0) at CP-0. Never track main. Re-pin
+  deliberately, as a checkpoint.</td></tr>
+<tr><td><b>Python 3.8.</b> <s>Monty targets an old interpreter.</s></td>
+  <td><span class="tag g">resolved</span></td>
+  <td>False alarm. <code>requires-python = '>=3.8'</code> with an explicit uv path for 3.9+.
+  Running 3.12.3 with CPU torch 2.13. Isolated venv, nothing global touched.</td></tr>
+<tr><td><b>Dependency drift.</b> <code>wandb.util.generate_id</code> is gone in wandb 0.28;
+  <code>torch-scatter</code> will not build against the installed CUDA.</td>
+  <td><span class="tag">low</span></td>
+  <td>Both worked around at CP-0 and documented. <code>torch-scatter</code> is never imported
+  by Monty, only <code>torch_geometric</code> is.</td></tr>
+<tr><td><b>Scope.</b> Six polymath properties, four experiments and two stretch checkpoints is
+  already more than one paper.</td>
+  <td><span class="tag">medium</span></td>
+  <td>Decided 2026-08-18: attempt all six, weight on H2. CP-6 and CP-7 remain explicitly
+  cuttable. H2 alone is a paper.</td></tr>
+<tr><td><b>Upstream's planned attention work overlaps CP-4.</b>
+  <code>future-work/voting-improvements/outline-how-to-apply-attention.md</code> proposes
+  "emphasize the representations in certain LMs over others" via lateral competition. Found
+  at CP-1.</td>
+  <td><span class="tag">medium</span></td>
+  <td>TBP-owned and at "scoping" status: theory and RFC only, no implementation, no dissent
+  signal. Our w(t) is driven by OOD track record, theirs by top-down feedback. Cite it, state
+  the difference, and re-check before CP-4. If they ship first, we build on it.</td></tr>
+<tr><td><b>Novelty already taken.</b> Someone may have added consensus voting to Monty
+  already.</td>
+  <td><span class="tag g">checked</span></td>
+  <td>CP-1 searched all repos, issues, PRs and <code>future-work/</code>. <code>np.ma.max</code>
+  has <b>0 hits ever</b>; consensus voting rule <b>0</b>. Five planned voting items exist and
+  are now cited in §3 — none replaces the aggregation rule or measures dispersion. Open, but
+  not virgin territory.</td></tr>
+</tbody>
+</table>
+
+<h2 id="pub">9. Publication shape</h2>
+
+<p>The honest genre works only if the claim is about what happened, not about what it means.
+Structure follows from that.</p>
+
+<ol>
+<li><b>Abstract</b> — the measured result first. Not the analogy.</li>
+<li><b>Motivation</b> — TBT, the polymath specification, §4.1 clearly marked as mapping and
+  not evidence.</li>
+<li><b>The gap</b> — §3, read from source at a pinned sha. This section is a contribution on
+  its own even if every hypothesis fails.</li>
+<li><b>Method</b> — consensus rule, D-index, w(t). Small enough to state in full.</li>
+<li><b>Pre-registration</b> — predictions with their commit shas, quoted.</li>
+<li><b>Results</b> — including the null and negative ones, in the body.</li>
+<li><b>Rival accounts</b> — structure-mapping and ensemble diversity, from CP-2.</li>
+<li><b>What we did not do</b> — cut checkpoints, with reasons.</li>
+</ol>
+
+<div class="panel ok">
+<p style="margin-top:0"><b>Why this can be published even if H1 and H2 both fail.</b> Three
+outputs survive a total negative result:</p>
+<ol style="margin-bottom:0">
+<li>A source-level analysis of how consensus actually works in the reference implementation
+of Thousand Brains Theory, including that its default aggregation is winner-take-all.</li>
+<li>A working D-index and instrumentation for disagreement that Monty does not currently
+have, contributable upstream regardless of our findings.</li>
+<li>A pre-registered negative result on multi-frame OOD transfer, which is the kind of thing
+this field has too few of.</li>
+</ol>
+</div>
+
+<div class="panel acc">
+<h3 style="margin-top:0">Publication framing, revised twice on 2026-08-19</h3>
+<p>The list above still holds, with one change forced by P8 and a second by P9–P11.
+<b>The result is no longer "voting harms".</b> It is:</p>
+<p class="q" style="margin:14px 0">The measured value of multi-frame voting is dominated by
+the episode-scoring criterion — which the reference implementation supplies as a default and
+which the literature does not argue for. On identical episodes the effect runs from −2.80 pp
+to +30.20 pp depending only on that choice.</p>
+<p>That is a harder claim to dismiss than a negative result, and it
+generalises past this codebase: <b>any</b> multi-module benchmark scored by "did any module
+get it right" is measuring independence and calling it accuracy. The threshold-free metric
+(mean modules correct) is the defence against a reviewer who says unanimity is as arbitrary
+as <code>AnyLMsMatch</code>.</p>
+<p><b>P9–P11 add a second, independent claim that shares no data with the first:</b></p>
+<p class="q" style="margin:14px 0">Making modules exchange votes more does not make them
+more right, it makes them more alike. Three plain rounds take unanimity from 43.50 to
+79.00% while accuracy falls and confident errors quadruple. Staging the exchange — few
+speakers per round — prevents that collapse; <em>adversarial content within the staging
+does not add to it</em>.</p>
+<p style="margin-bottom:0">Both claims point the same way, which is why they belong in one
+paper: <b>the interesting variable is the protocol of exchange, not the arithmetic of
+aggregation.</b> Three experiments independently found the reduction rule to be
+near-irrelevant (P8 within 1.6 pp, P10 n.s., P11 max |t|=1.63) while protocol changes moved
+results by 30 pp. A fourth contribution is methodological and unusually concrete: five
+sweeps were voided here, <b>none caught by reading the code</b>, all caught by
+pre-registered controls, liveness probes and count assertions.</p>
+</div>
+
+<p style="color:var(--dim);font-size:13.5px;margin-top:56px;border-top:1px solid var(--line);padding-top:20px">
+Status 2026-08-19 (end of day): CP-0 to CP-5 and P4 to P12 run — 5700 episodes in total,
+of which 1350 are H2's first real test. <b>P13 is built, gated and pre-registered but not
+run</b>: its pre-sweep liveness check found the 0.04 arm 83.2% silent and it must be
+re-cut at 0.02 first. Tree clean at <code>0cad83c</code>; <code>bash tools/run_gates.sh</code>
+passes and <code>tools/audit_configs.py</code> exits 0.
+Every config and every run directory was audited on this date
+(<code>tools/audit_configs.py</code>): <b>zero findings affecting a published number</b>,
+one real bug found and fixed in unreleased P12 code, and the correction that
+<b>H2 and H1's second clause have never been tested</b>. Every number in this document is reproducible from the
+pinned sha <code>0c81b1f</code>, the configs, and the run directories. Gates: run
+<code>bash tools/run_gates.sh</code> (81 assertions); running the gate files directly as
+scripts executes <b>zero</b> assertions and exits 0, which is how this project's own
+false-coverage failure mode nearly reached its test suite. Sources read on 2026-08-18: Hawkins &amp; Ahmad 2016
+(fncir.2016.00023), Hawkins et al. 2019 (fncir.2018.00121), TBP white paper
+(arXiv:2412.18354), Leadholm et al. 2026 (Neural Computation 38:6), and the
+<code>tbp.monty</code> source at <code>main</code> —
+<code>monty_base.py</code>, <code>graph_matching.py</code>,
+<code>evidence_matching/learning_module.py</code>.
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+threshold	arm	seed	episodes	correct	accuracy	seconds
+0.8	e1_ood_max	42	50	44	88.00	46
+0.8	e1_ood_max	45	50	44	88.00	48
+0.8	e1_ood_consensus	42	50	43	86.00	60
+0.8	e1_ood_consensus	45	50	44	88.00	50
+0.5	e1_ood_max	42	50	47	94.00	52
+0.5	e1_ood_max	45	50	42	84.00	70
+0.5	e1_ood_consensus	42	50	50	100.00	72
+0.5	e1_ood_consensus	45	30	24	80.00	46
+0.2	e1_ood_max	42	50	48	96.00	76
+0.2	e1_ood_max	45	50	49	98.00	84
+0.2	e1_ood_consensus	42	50	48	96.00	75
+0.2	e1_ood_consensus	45	50	49	98.00	151
+0.05	e1_ood_max	42	50	49	98.00	88
+0.05	e1_ood_max	45	50	47	94.00	86
+0.05	e1_ood_consensus	42	50	49	98.00	103
+0.05	e1_ood_consensus	45	50	48	96.00	105

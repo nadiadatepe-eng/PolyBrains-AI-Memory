@@ -1,0 +1,28 @@
+  pooled sd across all arms/seeds : 2.03 pp
+  mean within-arm sd              : 1.64 pp
+  standard error (sd/sqrt(n=10))  : 0.64 pp  <- comparison threshold
+
+==========================================================================
+PRE-REGISTERED VERDICTS
+==========================================================================
+
+P7b: consensus beats max on accuracy  [PAIRED t-test, n=10 seeds]
+  mean paired diff = +0.80 pp  (sd 2.35)
+  t(9) = 1.08   critical |t| = 2.262
+  consensus wins 4, loses 1, ties 5
+  VERDICT: NOT SIGNIFICANT -- P7b not supported
+
+  no-voting vs max [paired]: +2.80 pp, t = 4.58 -> SIGNIFICANT
+
+  control: mean - max = +0.40 pp
+  control is flat -> the effect is agreement-weighting, not averaging
+
+P7a: consensus lowers failure correlation
+  max       : 15/295 = 5.1%
+  consensus : 11/299 = 3.7%
+  two-proportion z = 0.84  (n.s.)
+  VERDICT: directionally consistent, NOT significant
+
+H1 (voting helps OOD): no-voting = 99.80% vs best voting arm = 97.80%
+  VERDICT: still NOT supported
+

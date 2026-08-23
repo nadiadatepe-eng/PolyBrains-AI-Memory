@@ -1,0 +1,104 @@
+==============================================================================
+P8 -- UNANIMITY CRITERION: re-scoring P7's 2000 episodes, no new runs
+==============================================================================
+
+How many of 5 modules are correct, per episode (2000 episodes, all arms):
+  0 correct :    40  (  2.0%)
+  1 correct :    15  (  0.8%)
+  2 correct :    52  (  2.6%)
+  3 correct :   582  ( 29.1%)
+  4 correct :   654  ( 32.7%)
+  5 correct :   657  ( 32.9%)
+
+arm                            any      majority     unanimous
+------------------------------------------------------------------------------
+max (upstream)              97.00%        94.40%        41.00%
+mean (control)              97.40%        94.60%        39.40%
+consensus                   97.80%        95.00%        40.20%
+no voting                   99.80%        94.60%        10.80%
+
+==============================================================================
+PRE-REGISTERED VERDICTS (registered 5e363dc)
+==============================================================================
+
+[any] no voting - max = +2.80 pp   t(9) = 4.58  SIGNIFICANT
+         no-voting wins 9, loses 1, ties 0
+
+[majority] no voting - max = +0.20 pp   t(9) = 0.13  n.s.
+         no-voting wins 5, loses 4, ties 1
+
+[unanimous] no voting - max = -30.20 pp   t(9) = -14.40  SIGNIFICANT
+         no-voting wins 0, loses 10, ties 0
+
+------------------------------------------------------------------------------
+P8a: no-voting advantage shrinks under unanimity
+  any +2.80 pp -> unanimous -30.20 pp
+  VERDICT: SUPPORTED
+
+P8b: under unanimity, VOTING BEATS NO VOTING (sign flips)
+  no voting - max = -30.20 pp, t(9) = -14.40
+  VERDICT: SUPPORTED -- H1 refutation is criterion-dependent
+
+P8c: majority sits between any and unanimous, monotonically
+  +2.80 -> +0.20 -> -30.20
+  VERDICT: SUPPORTED
+
+------------------------------------------------------------------------------
+CONFOUND CHECK (pre-registered): floor effect?
+  any        range  97.00% -  99.80%  spread  2.80 pp
+  majority   range  94.40% -  95.00%  spread  0.60 pp
+  unanimous  range  10.80% -  41.00%  spread 30.20 pp
+  A spread that collapses to ~0 means the criterion compressed the
+  arms, and the comparison is uninformative rather than negative.
+
+==============================================================================
+STANDING OF H1
+==============================================================================
+  H1's refutation is CRITERION-DEPENDENT. It must be reported as
+  relative to AnyLMsMatch, not as a general result.
+
+==============================================================================
+P8b -- IS THE UNANIMITY RESULT CIRCULAR? lift vs drag, per arm
+==============================================================================
+
+Distribution of modules-correct per episode, BY ARM (500 eps each):
+
+arm                        0       1       2       3       4       5     mean
+------------------------------------------------------------------------------
+max (upstream)            15       2      11     103     164     205    4.028
+mean (control)            13       4      10     108     168     197    4.010
+consensus                 11       4      10     110     164     201    4.030
+no voting                  1       5      21     261     158      54    3.464
+
+  'mean' is criterion-free: no threshold, so it cannot favour either
+  read-out. If voting only manufactured agreement without helping, it
+  would NOT raise this number.
+
+==============================================================================
+MEAN MODULES CORRECT -- paired against no voting
+==============================================================================
+  max (upstream)       +0.564 modules/episode   t(9) =  15.11  SIGNIFICANT
+  mean (control)       +0.546 modules/episode   t(9) =  10.66  SIGNIFICANT
+  consensus            +0.566 modules/episode   t(9) =  11.38  SIGNIFICANT
+
+==============================================================================
+LIFT vs DRAG -- episode-by-episode, paired on seed AND episode index
+==============================================================================
+
+(episodes are the same objects in the same order across arms, so a
+ per-episode comparison against the no-voting arm is meaningful)
+
+arm                    lifted  dragged      net  collapse 5->0  rescued 0->5
+------------------------------------------------------------------------------
+max (upstream)            277       75     +202              0             1
+mean (control)            276       79     +197              0             1
+consensus                 276       74     +202              0             1
+
+==============================================================================
+VERDICT
+==============================================================================
+  Voting raises mean modules-correct by +0.564/episode (t=15.11, significant),
+  on a metric with NO threshold. The unanimity result is therefore
+  NOT purely an artefact of rewarding agreement: voting is
+  propagating correct evidence, not merely copying.
+
