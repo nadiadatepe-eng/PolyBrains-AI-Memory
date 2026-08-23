@@ -16,6 +16,17 @@ constraint, not proof of a new memory hypothesis. The new contribution surface i
 external memory with independent private stores, provenance-preserving claim exchange, and
 conservative shared consolidation. A falsifiable proposal must precede implementation.
 
+## 2026-08-23 · Standalone memory core before adapters
+
+The active roadmap does not continue PolyBrains' open P13, voting, or publication checkpoints.
+Those remain intact in `ORIGIN-TODO.md` and belong to the source project.
+
+The memory core begins with standard-library records, private episodic stores, deterministic
+retrieval baselines, and explicit lifecycle rules. Monty, agent frameworks, embeddings, vector
+databases, model providers, and network services are adapters or later evidence-driven choices.
+This separation is required so H-M1 and H-M2 can be tested without confusing memory behavior with
+a framework's retrieval or generation behavior.
+
 ---
 
 ## 2026-08-18 · Project framing

@@ -17,10 +17,10 @@
 
 ## Local Contracts
 
-- `ORIGIN-STATE.md`, existing reports, predictions, and decisions preserve the imported research
-  record. Do not rewrite historical evidence to fit the new memory direction.
-- New memory hypotheses require pre-registration before experiments, following the inherited
-  `PREDICTIONS.md` discipline.
+- `ORIGIN-STATE.md`, `ORIGIN-TODO.md`, existing reports, predictions, and decisions preserve the
+  imported research record. Do not rewrite historical evidence to fit the new memory direction.
+- New memory hypotheses require pre-registration in append-only `PREDICTIONS-MEMORY.md`, following
+  the discipline of the historical `PREDICTIONS.md` without editing it.
 - Private module memories remain independently inspectable; shared memory must retain source,
   time, confidence, contradictions, and abstentions.
 - Consensus is not validation. No consolidation rule may equate agreement or confidence with
@@ -31,6 +31,8 @@
 
 ## Work Guidance
 
+- Keep the memory core independent of Monty, model providers, agent frameworks, vector databases,
+  credentials, and network services.
 - Begin with a falsifiable memory proposal and the smallest experiment that separates private
   retrieval, claim exchange, and shared consolidation.
 - Reuse the thin `src/polybrains/` layer where it genuinely fits; do not preserve inherited code

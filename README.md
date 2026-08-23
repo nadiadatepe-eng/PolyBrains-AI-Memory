@@ -19,3 +19,8 @@ abstentions before anything is consolidated into shared long-term memory.
 The complete committed PolyBrains record was imported at source commit `fb8071d`. Historical
 state is preserved in `ORIGIN-STATE.md`, `DECISIONS.md`, `PREDICTIONS.md`, and `reports/`.
 The original `[source PolyBrains checkout]` project remains separate.
+
+The active roadmap is `TODO.md`; the complete inherited checkpoint ledger is retained unchanged
+in `ORIGIN-TODO.md`. The first implementation target is a deterministic, model-independent memory
+record and private episodic store. Monty and agent-framework integrations are adapters, not core
+dependencies.
