@@ -1,0 +1,15 @@
+{
+  "status": "diagnostic-candidate-not-retained",
+  "selected_on": "development",
+  "policy": "minimum-3/4",
+  "normalized_score": "overlap / query token count",
+  "minimum_score": "3/4",
+  "minimum_margin": "0",
+  "development_result": {
+    "false_retrieval_rate": 0.0,
+    "correct_retrieval_rate": 0.25,
+    "v01_false_retrieval_rate": 0.5,
+    "v01_correct_retrieval_rate": 0.5
+  },
+  "selection_reason": "Only registered candidate to reduce development false retrieval; already violates the correct-retrieval margin, so it cannot enter the core even if held-out improves."
+}

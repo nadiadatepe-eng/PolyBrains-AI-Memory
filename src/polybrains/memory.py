@@ -320,6 +320,21 @@ def _tokens(value: str) -> set[str]:
     return set(re.findall(r"\w+", value.casefold()))
 
 
+def _active_records(
+    records: Iterable[MemoryRecord], at: datetime | None = None, source: str | None = None
+) -> list[MemoryRecord]:
+    records = list(records)
+    hidden = {target for record in records for target in record.supersedes}
+    return [
+        record
+        for record in records
+        if record.lifecycle is Lifecycle.ACTIVE
+        and record.record_id not in hidden
+        and (at is None or _utc(record.event_time) <= _utc(at))
+        and (source is None or record.source == source)
+    ]
+
+
 def _rank(
     records: Iterable[MemoryRecord],
     query: str,
@@ -328,24 +343,14 @@ def _rank(
     source: str | None = None,
 ) -> tuple[MemoryRecord | None, int, int]:
     query_tokens = _tokens(query)
-    live = list(records)
-    hidden = {target for record in live for target in record.supersedes}
+    live = _active_records(records, at, source)
     candidates = []
-    examined = 0
     for record in live:
-        if (
-            record.lifecycle is not Lifecycle.ACTIVE
-            or record.record_id in hidden
-            or (at is not None and _utc(record.event_time) > _utc(at))
-            or (source is not None and record.source != source)
-        ):
-            continue
-        examined += 1
         overlap = len(query_tokens & _tokens(record.payload.decode("utf-8")))
         if overlap:
             candidates.append((overlap, record.confidence, _utc(record.event_time), record.record_id, record))
     best = max(candidates, default=(0, None, None, None, None))
-    return best[-1], best[0], examined
+    return best[-1], best[0], len(live)
 
 
 def retrieve(
