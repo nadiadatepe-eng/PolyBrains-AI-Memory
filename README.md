@@ -16,11 +16,12 @@ abstentions before anything is consolidated into shared long-term memory.
 - private agent memory and governed shared multi-agent memory;
 - cognitive inspiration tested as falsifiable mechanisms rather than metaphor.
 
-The complete committed PolyBrains record was imported at source commit `fb8071d`. Historical
-state is preserved in `ORIGIN-STATE.md`, `DECISIONS.md`, `PREDICTIONS.md`, and `reports/`.
-The original `[source PolyBrains checkout]` project remains separate.
+The complete PolyBrains record remains recoverable at source commit `fb8071d`. Its historical
+state and measured evidence are preserved in `ORIGIN-STATE.md`, `ORIGIN-TODO.md`,
+`PREDICTIONS.md`, `DECISIONS.md`, and `reports/`; inherited executable machinery is not part of
+the active memory project. The original `[source PolyBrains checkout]` project remains separate.
 
 The active roadmap is `TODO.md`; the complete inherited checkpoint ledger is retained unchanged
 in `ORIGIN-TODO.md`. The first implementation target is a deterministic, model-independent memory
-record and private episodic store. Monty and agent-framework integrations are adapters, not core
-dependencies.
+record and private episodic store in `src/polybrains/memory.py`. The core and its gate use only the
+Python standard library. Monty and agent-framework integrations are adapters, not core dependencies.

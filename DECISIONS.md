@@ -27,6 +27,14 @@ databases, model providers, and network services are adapters or later evidence-
 This separation is required so H-M1 and H-M2 can be tested without confusing memory behavior with
 a framework's retrieval or generation behavior.
 
+## 2026-08-23 · Imported evidence stays; inherited machinery leaves the active tree
+
+The reports, origin ledgers, predictions, and decisions remain as historical evidence. The
+inherited Monty modules, experiment configs, runners, analysers, and tests are removed from the
+active tree because they do not implement external memory and depended on an absent ignored
+virtualenv. They remain recoverable from imported commit `fb8071d` and the separate PolyBrains
+repository. The active gate now proves the standard-library memory core on plain Python 3.
+
 ---
 
 ## 2026-08-18 · Project framing
