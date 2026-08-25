@@ -344,3 +344,20 @@ margins and showed the same false-retrieval direction on development.
 The result is mixed: development correct retrieval fell from 2/4 to 1/4 because a valid correction
 and lexical collision both scored 1/2. The candidate is retained only for CP-R3 replication and
 has not entered the memory core. Report: `reports/cp-r2-heldout.md`.
+
+## R3 — lexical replication registration
+
+**Registered:** 2026-08-25, before running CP-R3. Seeds 11, 23, and 37, their exact query text,
+payloads, arms, owner/frame swap, and validity rules are frozen in
+`configs/retrieval/v02-replication.json`.
+
+**Prediction:** minimum-3/4 will reduce false retrieval without held-out-sized correct-retrieval
+loss on seed 11. Seed 23 can refute robustness because its valid correction and collision both
+score 1/2. Seed 37 can refute robustness because its one-token collision scores 1. All results are
+retained; the policy advances only if the false-retrieval direction appears on all three seeds,
+correct-retrieval loss is at most 5 percentage points on every seed, owner/frame swaps preserve
+every outcome, provenance remains complete, costs stay within R0, and all v0.1 gates pass.
+
+**Invalid rather than negative:** a changed configuration hash, unequal candidate boundary,
+missing seed/class/arm, swap mismatch, or regression-gate failure invalidates the run. Otherwise
+mixed and negative seeds count against the policy.

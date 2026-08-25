@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "seeds": [11, 23, 37],
+  "arms": ["v0.1", "minimum-3/4"],
+  "owner_frame_swap": {"a": "b", "b": "a", "map-a": "map-b", "map-b": "map-a"},
+  "common": {
+    "exact_payload": "harbor gate status open",
+    "paraphrase_payload": "physician works in clinic",
+    "collision_payload": "jaguar brochure archived",
+    "stale_payload": "forecast says rain",
+    "corrected_payload": "forecast says sun",
+    "contradictory_prior_payload": "bridge status open",
+    "contradictory_outcome_payload": "bridge status closed"
+  },
+  "fixtures": {
+    "11": {
+      "exact_query": "status gate harbor",
+      "paraphrase_query": "doctor employed at medical office",
+      "collision_query": "jaguar habitat",
+      "corrected_query": "forecast says sun",
+      "contradictory_query": "bridge status",
+      "unmatched_query": "glacier depth"
+    },
+    "23": {
+      "exact_query": "gate harbor status",
+      "paraphrase_query": "medical practitioner workplace",
+      "collision_query": "jaguar warranty",
+      "corrected_query": "forecast today",
+      "contradictory_query": "status bridge",
+      "unmatched_query": "volcano temperature"
+    },
+    "37": {
+      "exact_query": "harbor status gate",
+      "paraphrase_query": "doctor at medical office",
+      "collision_query": "jaguar",
+      "corrected_query": "forecast says sun",
+      "contradictory_query": "bridge status",
+      "unmatched_query": "tundra humidity"
+    }
+  },
+  "validity": {
+    "required_classes": ["answerable-exact", "answerable-paraphrase", "unanswerable-lexical-collision", "corrected-stale", "contradictory", "unmatched"],
+    "swap_must_preserve_every_outcome": true,
+    "all_v01_gates_must_pass": true,
+    "record_all_seed_results": true
+  }
+}
