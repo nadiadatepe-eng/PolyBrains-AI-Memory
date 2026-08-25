@@ -306,3 +306,27 @@ no memory returned 0/40. Provenance was complete for 240/240 returned records. S
 store from 120 to 1,200 records increased examined cost from 120 to 1,200 per query, median/p95
 latency from 0.128/0.131 ms to 1.273/1.374 ms, payload storage 11.23×, and serialized storage
 10.04×. Report: `reports/m2-private-recall.md`.
+
+## R0 — v0.2 retrieval calibration protocol
+
+**Registered:** 2026-08-25, before implementing or evaluating a v0.2 retrieval policy.
+
+**Fixtures:** development and held-out JSON fixtures, query classes, labels, hashes, metrics,
+controls, rivals, acceptance margins, and invalid-run conditions are frozen in
+`docs/retrieval-v02-protocol.md`. The development fixture SHA-256 is
+`47b15a50296b4ec248937739a6d375c78c856130ef7511e882b222238df280d3`; held-out is
+`f241fe5d12a00aba3eb85dec261547eae63d6351228673d144c6e9b1374c8fd0`.
+
+**Directional prediction:** a deterministic calibrated lexical policy can reduce held-out false
+retrieval by at least 50 percentage points relative to unchanged v0.1 without losing more than 5
+percentage points of correct retrieval. It will preserve provenance and examined-record cost, use
+at most 2× median latency and 1.1× serialized storage, and reproduce the false-retrieval direction
+on development. No prediction selects which lexical policy will win.
+
+**Acceptance:** all six margins in the protocol are conjunctive. A policy that merely abstains
+more and loses answers beyond the margin fails. A valid negative result retains v0.1.
+
+**Falsification:** H-R1 fails if no frozen deterministic policy meets every held-out margin, if the
+direction does not replicate on development, or if the harness cannot fail under its registered
+perturbations. Any fixture/hash mismatch, label leakage, unequal candidate boundary, post-held-out
+tuning, or v0.1 regression makes the run invalid rather than negative.

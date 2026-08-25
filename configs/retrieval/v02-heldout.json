@@ -1,0 +1,21 @@
+{
+  "fixture": "v02-heldout",
+  "records": [
+    {"record_id":"c-port","owner":"c","frame":"map-c","source":"observation","event_time":"2026-08-25T09:00:00+00:00","write_time":"2026-08-25T09:00:00+00:00","confidence":0.65,"payload":"port means harbor"},
+    {"record_id":"d-port","owner":"d","frame":"map-d","source":"observation","event_time":"2026-08-25T09:00:00+00:00","write_time":"2026-08-25T09:00:00+00:00","confidence":0.98,"payload":"port means network endpoint"},
+    {"record_id":"c-physician","owner":"c","frame":"map-c","source":"observation","event_time":"2026-08-25T09:01:00+00:00","write_time":"2026-08-25T09:01:00+00:00","confidence":0.75,"payload":"physician works in clinic"},
+    {"record_id":"c-python-noise","owner":"c","frame":"map-c","source":"distractor","event_time":"2026-08-25T09:02:00+00:00","write_time":"2026-08-25T09:02:00+00:00","confidence":0.96,"payload":"python installation guide"},
+    {"record_id":"c-platform-old","owner":"c","frame":"map-c","source":"observation","event_time":"2026-08-24T09:00:00+00:00","write_time":"2026-08-24T09:00:00+00:00","confidence":0.92,"payload":"train departs platform two"},
+    {"record_id":"c-platform-new","owner":"c","frame":"map-c","source":"correction","event_time":"2026-08-25T09:03:00+00:00","write_time":"2026-08-25T09:03:00+00:00","confidence":0.68,"payload":"train departs platform four","supersedes":["c-platform-old"],"reason":"platform changed"},
+    {"record_id":"c-museum-false","owner":"c","frame":"map-c","source":"correlated-prior","event_time":"2026-08-25T09:04:00+00:00","write_time":"2026-08-25T09:04:00+00:00","confidence":0.99,"payload":"museum monday open"},
+    {"record_id":"c-museum-true","owner":"c","frame":"map-c","source":"observed-outcome","event_time":"2026-08-25T09:04:00+00:00","write_time":"2026-08-25T09:04:00+00:00","confidence":0.58,"payload":"museum monday closed"}
+  ],
+  "queries": [
+    {"query_id":"heldout-exact","class":"answerable-exact","requester":"c","frame":"map-c","text":"port harbor","expected_record_id":"c-port"},
+    {"query_id":"heldout-paraphrase","class":"answerable-paraphrase","requester":"c","frame":"map-c","text":"doctor employed at medical office","expected_record_id":"c-physician"},
+    {"query_id":"heldout-collision","class":"unanswerable-lexical-collision","requester":"c","frame":"map-c","text":"python habitat","expected_record_id":null},
+    {"query_id":"heldout-corrected","class":"corrected-stale","requester":"c","frame":"map-c","text":"train platform","expected_record_id":"c-platform-new"},
+    {"query_id":"heldout-contradiction","class":"contradictory","requester":"c","frame":"map-c","text":"museum monday","expected_record_id":"c-museum-true"},
+    {"query_id":"heldout-unmatched","class":"unmatched","requester":"d","frame":"map-d","text":"glacier depth","expected_record_id":null}
+  ]
+}

@@ -147,14 +147,14 @@ falsification conditions to `PREDICTIONS-MEMORY.md`.
 
 ## CP-R0 · Freeze the retrieval-quality experiment
 
-- [ ] Define answerable exact, answerable paraphrase, unanswerable lexical-collision,
+- [x] Define answerable exact, answerable paraphrase, unanswerable lexical-collision,
       corrected/stale, contradictory, and unmatched query classes.
-- [ ] Keep owner/frame boundaries explicit and label correctness independently of overlap,
+- [x] Keep owner/frame boundaries explicit and label correctness independently of overlap,
       confidence, agreement, and retrieval score.
-- [ ] Split policy-development and held-out evaluation fixtures before tuning.
-- [ ] Freeze correct retrieval, false retrieval, answer rate, abstention quality, provenance,
+- [x] Split policy-development and held-out evaluation fixtures before tuning.
+- [x] Freeze correct retrieval, false retrieval, answer rate, abstention quality, provenance,
       records examined, latency, and storage metrics.
-- [ ] Pre-register acceptance margins, replication controls, rival explanations, and invalid-run
+- [x] Pre-register acceptance margins, replication controls, rival explanations, and invalid-run
       conditions in append-only `PREDICTIONS-MEMORY.md`.
 
 Gate: every metric has a smallest fixture that can make it fail for its intended reason, and the

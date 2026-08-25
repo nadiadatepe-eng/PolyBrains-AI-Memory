@@ -1,0 +1,21 @@
+{
+  "fixture": "v02-development",
+  "records": [
+    {"record_id":"a-bank","owner":"a","frame":"map-a","source":"observation","event_time":"2026-08-25T08:00:00+00:00","write_time":"2026-08-25T08:00:00+00:00","confidence":0.60,"payload":"bank means river edge"},
+    {"record_id":"b-bank","owner":"b","frame":"map-b","source":"observation","event_time":"2026-08-25T08:00:00+00:00","write_time":"2026-08-25T08:00:00+00:00","confidence":0.99,"payload":"bank means financial institution"},
+    {"record_id":"a-auto","owner":"a","frame":"map-a","source":"observation","event_time":"2026-08-25T08:01:00+00:00","write_time":"2026-08-25T08:01:00+00:00","confidence":0.80,"payload":"automobile parked inside garage"},
+    {"record_id":"a-jaguar-noise","owner":"a","frame":"map-a","source":"distractor","event_time":"2026-08-25T08:02:00+00:00","write_time":"2026-08-25T08:02:00+00:00","confidence":0.95,"payload":"jaguar brochure archived"},
+    {"record_id":"a-weather-old","owner":"a","frame":"map-a","source":"observation","event_time":"2026-08-24T08:00:00+00:00","write_time":"2026-08-24T08:00:00+00:00","confidence":0.90,"payload":"forecast says rain"},
+    {"record_id":"a-weather-new","owner":"a","frame":"map-a","source":"correction","event_time":"2026-08-25T08:03:00+00:00","write_time":"2026-08-25T08:03:00+00:00","confidence":0.70,"payload":"forecast says sun","supersedes":["a-weather-old"],"reason":"new observation"},
+    {"record_id":"a-bridge-false","owner":"a","frame":"map-a","source":"correlated-prior","event_time":"2026-08-25T08:04:00+00:00","write_time":"2026-08-25T08:04:00+00:00","confidence":0.99,"payload":"bridge status open"},
+    {"record_id":"a-bridge-true","owner":"a","frame":"map-a","source":"observed-outcome","event_time":"2026-08-25T08:04:00+00:00","write_time":"2026-08-25T08:04:00+00:00","confidence":0.60,"payload":"bridge status closed"}
+  ],
+  "queries": [
+    {"query_id":"dev-exact","class":"answerable-exact","requester":"a","frame":"map-a","text":"bank river edge","expected_record_id":"a-bank"},
+    {"query_id":"dev-paraphrase","class":"answerable-paraphrase","requester":"a","frame":"map-a","text":"car stored in vehicle shelter","expected_record_id":"a-auto"},
+    {"query_id":"dev-collision","class":"unanswerable-lexical-collision","requester":"a","frame":"map-a","text":"jaguar warranty","expected_record_id":null},
+    {"query_id":"dev-corrected","class":"corrected-stale","requester":"a","frame":"map-a","text":"forecast today","expected_record_id":"a-weather-new"},
+    {"query_id":"dev-contradiction","class":"contradictory","requester":"a","frame":"map-a","text":"bridge status","expected_record_id":"a-bridge-true"},
+    {"query_id":"dev-unmatched","class":"unmatched","requester":"b","frame":"map-b","text":"volcano temperature","expected_record_id":null}
+  ]
+}
