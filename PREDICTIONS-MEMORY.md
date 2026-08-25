@@ -402,3 +402,16 @@ post-replication tuning, missing arms/classes, or a v0.1 gate regression makes a
 **Pre-run clarification:** the frozen threshold tie-break keeps development thresholds whose
 correct, false, and wrong retrieval are no worse than v0.1, then maximizes paraphrase correctness,
 minimizes false retrieval, maximizes total correct retrieval, and chooses the lowest threshold.
+
+## R4 — semantic retrieval result
+
+**Run:** 2026-08-25. Development selected cosine threshold 0.55. The pinned MiniLM candidate
+recovered 3/3 replication paraphrases and raised correct retrieval from 2/4 to 3/4 on every seed.
+False retrieval did not increase, wrong retrieval stayed 1/4, provenance remained 100%, examined
+records stayed 31, and all owner/frame swaps and repeated returned IDs matched.
+
+The 12,288-byte indexes built in 8.272–12.524 ms; median query latency was 5.165–5.521 ms and p95
+7.217–13.148 ms. Cached load was 0.174 seconds, model cache 91,579,245 bytes, and isolated CPU
+environment 1,290,060,543 bytes. Every registered margin passed. The semantic benchmark path is
+retained as optional evidence; no dependency entered the standard-library core. Report:
+`reports/cp-r4-semantic.md`.

@@ -201,15 +201,15 @@ provenance, isolation, lifecycle, or shared-memory guarantee from v0.1.
 
 ## CP-R4 · Semantic retrieval — conditional
 
-- [ ] Enter this checkpoint only if CP-R2/R3 measure a paraphrase or vocabulary gap that the
+- [x] Enter this checkpoint only if CP-R2/R3 measure a paraphrase or vocabulary gap that the
       deterministic lexical policies cannot close within the registered margins.
-- [ ] Pre-register a lexical-versus-semantic comparison before adding an embedding model,
+- [x] Pre-register a lexical-versus-semantic comparison before adding an embedding model,
       vector database, network service, or new dependency.
-- [ ] Keep embeddings as candidate generation only; preserve deterministic filters, provenance,
+- [x] Keep embeddings as candidate generation only; preserve deterministic filters, provenance,
       contradictions, scores, abstentions, and an exact lexical control.
-- [ ] Measure model/download size, indexing time, query latency, storage, reproducibility, and
+- [x] Measure model/download size, indexing time, query latency, storage, reproducibility, and
       retrieval quality separately.
-- [ ] Remove the semantic path if it does not beat the lexical baseline on the registered outcome.
+- [x] Remove the semantic path if it does not beat the lexical baseline on the registered outcome.
 
 Gate: no semantic dependency enters the core without a measured retrieval benefit that exceeds
 its pre-registered cost and reproducibility margins.

@@ -1,0 +1,17 @@
+{
+  "status": "passes-preregistered-gate",
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a24",
+  "packages": {"sentence-transformers":"6.0.0","transformers":"5.15.1","torch":"2.13.0+cpu","numpy":"2.5.2"},
+  "chosen_threshold": 0.55,
+  "cached_model_load_seconds": 0.174160896,
+  "model_cache_bytes": 91579245,
+  "isolated_environment_bytes": 1290060543,
+  "development": {"correct_retrieval":3,"false_retrieval":0,"wrong_retrieval":1,"paraphrase":"correct"},
+  "replication": {
+    "11": {"correct_retrieval":3,"false_retrieval":1,"wrong_retrieval":1,"paraphrase":"correct","provenance":1.0,"examined":31,"index_bytes":12288,"index_ms":12.52389,"median_query_ms":5.1649915,"p95_query_ms":13.147543,"swap_match":true,"repeat_ids_match":true},
+    "23": {"correct_retrieval":3,"false_retrieval":0,"wrong_retrieval":1,"paraphrase":"correct","provenance":1.0,"examined":31,"index_bytes":12288,"index_ms":8.271821,"median_query_ms":5.521133,"p95_query_ms":7.216525,"swap_match":true,"repeat_ids_match":true},
+    "37": {"correct_retrieval":3,"false_retrieval":1,"wrong_retrieval":1,"paraphrase":"correct","provenance":1.0,"examined":31,"index_bytes":12288,"index_ms":10.734085,"median_query_ms":5.327204,"p95_query_ms":8.471714,"swap_match":true,"repeat_ids_match":true}
+  },
+  "integration": "optional benchmark path only; standard-library core unchanged"
+}
