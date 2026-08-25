@@ -162,13 +162,13 @@ held-out labels are frozen before a new policy is implemented.
 
 ## CP-R1 · Reproduce and harden the benchmark harness
 
-- [ ] Reproduce v0.1's 200/200 unique-cue recall, 40/40 distractor false retrieval, 240/240
+- [x] Reproduce v0.1's 200/200 unique-cue recall, 40/40 distractor false retrieval, 240/240
       provenance completeness, and 10× examined-record scale control.
-- [ ] Add explicit ground-truth query records so a stored distractor is never inferred to be a
+- [x] Add explicit ground-truth query records so a stored distractor is never inferred to be a
       valid answer merely because it overlaps.
-- [ ] Prove false retrieval, wrong retrieval, and abstention are scored separately.
-- [ ] Add one perturbation control that changes each reported metric in the expected direction.
-- [ ] Emit one deterministic machine-readable result alongside the human report.
+- [x] Prove false retrieval, wrong retrieval, and abstention are scored separately.
+- [x] Add one perturbation control that changes each reported metric in the expected direction.
+- [x] Emit one deterministic machine-readable result alongside the human report.
 
 Gate: the unchanged v0.1 policy reproduces its frozen result and every measurement can go red.
 
