@@ -398,3 +398,7 @@ cost, keep the embedding index under 20 KB, cached model under 110 MB, installed
 **Falsification/removal:** failure of any conjunctive margin rejects and removes the semantic path;
 the standard-library core remains unchanged. Fixture/model revision mismatch, held-out reuse,
 post-replication tuning, missing arms/classes, or a v0.1 gate regression makes a run invalid.
+
+**Pre-run clarification:** the frozen threshold tie-break keeps development thresholds whose
+correct, false, and wrong retrieval are no worse than v0.1, then maximizes paraphrase correctness,
+minimizes false retrieval, maximizes total correct retrieval, and chooses the lowest threshold.

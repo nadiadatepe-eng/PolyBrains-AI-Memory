@@ -5,6 +5,7 @@
   "model_format": "safetensors",
   "candidate_generation": "cosine top-2 after existing owner/frame/lifecycle/supersession filters",
   "development_threshold_grid": [0.25, 0.35, 0.45, 0.55, 0.65, 0.75],
+  "threshold_selection": "Keep thresholds with development correct, false, and wrong retrieval no worse than v0.1; then maximize paraphrase correctness, minimize false retrieval, maximize total correct retrieval, and choose the lowest threshold.",
   "evaluation": {
     "development": "configs/retrieval/v02-development.json",
     "replication": "configs/retrieval/v02-replication.json",
