@@ -376,3 +376,25 @@ The minimum-3/4 policy fails the registered replication gate and is rejected. Th
 also confirms the measured lexical gap: paraphrases remained missed, equal-score corrections and
 collisions were inseparable, and one-token collisions passed the threshold. Report:
 `reports/cp-r3-replication.md`.
+
+## R4 — semantic retrieval registration
+
+**Registered:** 2026-08-25, before installing or downloading a semantic runtime. CP-R3 met the
+entry condition: all three paraphrases were missed and the deterministic lexical candidate failed
+replication.
+
+The frozen comparison uses `sentence-transformers/all-MiniLM-L6-v2` revision `1110a24`, cosine
+top-2 candidate generation, development-only threshold selection, the three R3 replication seeds,
+and unchanged v0.1/rejected-lexical controls. Exact parameters, quality margins, cost ceilings,
+reproducibility checks, and the removal rule are in `configs/retrieval/v02-semantic.json`.
+
+**Prediction:** semantic candidates will correctly retrieve at least two of three replication
+paraphrases without increasing false or wrong retrieval or losing correct retrieval on any seed.
+They must preserve complete provenance and owner/frame swaps, reproduce returned IDs, add no scan
+cost, keep the embedding index under 20 KB, cached model under 110 MB, installed environment under
+1.5 GB, index time under 2 seconds, cached load under 30 seconds, and median query latency under
+100 ms.
+
+**Falsification/removal:** failure of any conjunctive margin rejects and removes the semantic path;
+the standard-library core remains unchanged. Fixture/model revision mismatch, held-out reuse,
+post-replication tuning, missing arms/classes, or a v0.1 gate regression makes a run invalid.

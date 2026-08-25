@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "model": "sentence-transformers/all-MiniLM-L6-v2",
+  "revision": "1110a24",
+  "model_format": "safetensors",
+  "candidate_generation": "cosine top-2 after existing owner/frame/lifecycle/supersession filters",
+  "development_threshold_grid": [0.25, 0.35, 0.45, 0.55, 0.65, 0.75],
+  "evaluation": {
+    "development": "configs/retrieval/v02-development.json",
+    "replication": "configs/retrieval/v02-replication.json",
+    "heldout": "must not be rerun",
+    "controls": ["v0.1", "minimum-3/4-rejected"]
+  },
+  "acceptance": {
+    "replication_paraphrase_correct_min": "2/3",
+    "correct_retrieval_loss_per_seed_max_percentage_points": 5,
+    "false_retrieval_increase_per_seed_max_percentage_points": 0,
+    "wrong_retrieval_increase_per_seed_max_percentage_points": 0,
+    "provenance_completeness": 1.0,
+    "owner_frame_swap_match": true,
+    "repeat_returned_ids_match": true,
+    "examined_records_increase": 0,
+    "cached_model_bytes_max": 110000000,
+    "installed_environment_bytes_max": 1500000000,
+    "index_storage_bytes_max": 20000,
+    "index_time_ms_max": 2000,
+    "cached_model_load_seconds_max": 30,
+    "median_query_latency_ms_max": 100
+  },
+  "removal_rule": "Do not add the model or semantic path to the core unless every quality, provenance, isolation, reproducibility, and cost margin passes."
+}
