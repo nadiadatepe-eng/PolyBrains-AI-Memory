@@ -1,0 +1,25 @@
+{
+  "config_sha256": "da6885f6e8202055235257c2ee1733461cd79bcdf060f288f9510cf11c570103",
+  "policy": "minimum-3/4",
+  "status": "rejected",
+  "seeds": {
+    "11": {
+      "v01": {"correct_retrieval":2,"false_retrieval":1,"answer_rate":0.6666666666666666,"abstention_precision":0.5,"abstention_recall":0.5,"provenance":1.0,"examined":31,"median_latency_ns":79786.5,"p95_latency_ns":87802,"storage_bytes":3376},
+      "candidate": {"correct_retrieval":2,"false_retrieval":0,"answer_rate":0.5,"abstention_precision":0.6666666666666666,"abstention_recall":1.0,"provenance":1.0,"examined":31,"median_latency_ns":52316.0,"p95_latency_ns":87660,"storage_bytes":3376},
+      "class_outcomes": {"v01":{"answerable-exact":"correct","answerable-paraphrase":"missed","unanswerable-lexical-collision":"false-retrieval","corrected-stale":"correct","contradictory":"wrong","unmatched":"correct-abstention"},"candidate":{"answerable-exact":"correct","answerable-paraphrase":"missed","unanswerable-lexical-collision":"correct-abstention","corrected-stale":"correct","contradictory":"wrong","unmatched":"correct-abstention"}},
+      "swap_match": true
+    },
+    "23": {
+      "v01": {"correct_retrieval":2,"false_retrieval":1,"answer_rate":0.6666666666666666,"abstention_precision":0.5,"abstention_recall":0.5,"provenance":1.0,"examined":31,"median_latency_ns":75943.0,"p95_latency_ns":81641,"storage_bytes":3376},
+      "candidate": {"correct_retrieval":1,"false_retrieval":0,"answer_rate":0.3333333333333333,"abstention_precision":0.5,"abstention_recall":1.0,"provenance":1.0,"examined":31,"median_latency_ns":22198.0,"p95_latency_ns":93389,"storage_bytes":3376},
+      "class_outcomes": {"v01":{"answerable-exact":"correct","answerable-paraphrase":"missed","unanswerable-lexical-collision":"false-retrieval","corrected-stale":"correct","contradictory":"wrong","unmatched":"correct-abstention"},"candidate":{"answerable-exact":"correct","answerable-paraphrase":"missed","unanswerable-lexical-collision":"correct-abstention","corrected-stale":"missed","contradictory":"wrong","unmatched":"correct-abstention"}},
+      "swap_match": true
+    },
+    "37": {
+      "v01": {"correct_retrieval":2,"false_retrieval":1,"answer_rate":0.6666666666666666,"abstention_precision":0.5,"abstention_recall":0.5,"provenance":1.0,"examined":31,"median_latency_ns":76766.5,"p95_latency_ns":83275,"storage_bytes":3376},
+      "candidate": {"correct_retrieval":2,"false_retrieval":1,"answer_rate":0.6666666666666666,"abstention_precision":0.5,"abstention_recall":0.5,"provenance":1.0,"examined":31,"median_latency_ns":77730.5,"p95_latency_ns":83026,"storage_bytes":3376},
+      "class_outcomes": {"v01":{"answerable-exact":"correct","answerable-paraphrase":"missed","unanswerable-lexical-collision":"false-retrieval","corrected-stale":"correct","contradictory":"wrong","unmatched":"correct-abstention"},"candidate":{"answerable-exact":"correct","answerable-paraphrase":"missed","unanswerable-lexical-collision":"false-retrieval","corrected-stale":"correct","contradictory":"wrong","unmatched":"correct-abstention"}},
+      "swap_match": true
+    }
+  }
+}

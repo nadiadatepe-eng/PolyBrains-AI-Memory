@@ -188,13 +188,13 @@ correct-answer and cost margins; otherwise v0.1 remains the result.
 
 ## CP-R3 · Robustness and replication
 
-- [ ] Replicate across swapped owner/frame labels and at least three deterministic fixture seeds.
-- [ ] Test paraphrases, token-order changes, shared vocabulary, high-confidence distractors,
+- [x] Replicate across swapped owner/frame labels and at least three deterministic fixture seeds.
+- [x] Test paraphrases, token-order changes, shared vocabulary, high-confidence distractors,
       stale/corrected facts, contradictions, and unmatched queries separately.
-- [ ] Report per-class correctness, false retrieval, answer rate, abstention quality, provenance,
+- [x] Report per-class correctness, false retrieval, answer rate, abstention quality, provenance,
       latency, examined records, and storage; do not collapse them into one score.
-- [ ] Verify private-frame retrieval and shared-memory consolidation gates remain unchanged.
-- [ ] Record negative, mixed, and invalid runs rather than retaining only the best seed.
+- [x] Verify private-frame retrieval and shared-memory consolidation gates remain unchanged.
+- [x] Record negative, mixed, and invalid runs rather than retaining only the best seed.
 
 Gate: the direction of the held-out result replicates without erasing any disagreement,
 provenance, isolation, lifecycle, or shared-memory guarantee from v0.1.

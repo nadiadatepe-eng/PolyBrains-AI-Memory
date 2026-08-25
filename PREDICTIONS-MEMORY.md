@@ -361,3 +361,18 @@ every outcome, provenance remains complete, costs stay within R0, and all v0.1 g
 **Invalid rather than negative:** a changed configuration hash, unequal candidate boundary,
 missing seed/class/arm, swap mismatch, or regression-gate failure invalidates the run. Otherwise
 mixed and negative seeds count against the policy.
+
+## R3 — lexical replication result
+
+**Run:** 2026-08-25. The registered configuration SHA-256 was
+`da6885f6e8202055235257c2ee1733461cd79bcdf060f288f9510cf11c570103`.
+
+Seed 11 replicated the held-out direction with no correct-retrieval loss. Seed 23 reduced false
+retrieval but lost one of four correct answers. Seed 37 did not reduce false retrieval. All six
+owner/frame-swap arms matched, provenance remained 100%, examined records and storage were equal,
+and the v0.1 regression gate passed.
+
+The minimum-3/4 policy fails the registered replication gate and is rejected. The negative result
+also confirms the measured lexical gap: paraphrases remained missed, equal-score corrections and
+collisions were inseparable, and one-token collisions passed the threshold. Report:
+`reports/cp-r3-replication.md`.

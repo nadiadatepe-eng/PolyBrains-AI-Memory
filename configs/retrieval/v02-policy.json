@@ -1,5 +1,5 @@
 {
-  "status": "retained-for-cp-r3-replication",
+  "status": "rejected-after-cp-r3",
   "selected_on": "development",
   "policy": "minimum-3/4",
   "normalized_score": "overlap / query token count",
@@ -18,5 +18,5 @@
     "v01_false_retrieval_rate": 0.5,
     "v01_correct_retrieval_rate": 0.5
   },
-  "retention_scope": "Benchmark candidate only; development correct retrieval fell by 25 percentage points, so CP-R3 replication is required before promotion to the core."
+  "retention_scope": "Not promoted to the core: seed 23 lost 25 percentage points of correct retrieval and seed 37 did not reduce false retrieval."
 }

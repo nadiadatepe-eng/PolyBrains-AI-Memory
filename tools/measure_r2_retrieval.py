@@ -94,8 +94,12 @@ def retrieve(
     }
 
 
-def evaluate(split: str, policy: tuple[str, Fraction, Fraction]) -> dict[str, object]:
-    records, queries = load_fixture(split)
+def evaluate_fixture(
+    split: str,
+    records: list[MemoryRecord],
+    queries: list[dict[str, object]],
+    policy: tuple[str, Fraction, Fraction],
+) -> dict[str, object]:
     results = [retrieve(records, query, policy) for query in queries]
     latency = []
     for _ in range(20):
@@ -135,6 +139,11 @@ def evaluate(split: str, policy: tuple[str, Fraction, Fraction]) -> dict[str, ob
         },
         "classes": {result["class"]: result for result in results},
     }
+
+
+def evaluate(split: str, policy: tuple[str, Fraction, Fraction]) -> dict[str, object]:
+    records, queries = load_fixture(split)
+    return evaluate_fixture(split, records, queries, policy)
 
 
 def main() -> None:
