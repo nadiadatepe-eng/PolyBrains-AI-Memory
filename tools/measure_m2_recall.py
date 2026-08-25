@@ -70,7 +70,11 @@ def complete_provenance(record: MemoryRecord) -> bool:
 def main() -> None:
     stores = (build_store("a", "map-a"), build_store("b", "map-b"))
     recall = recalled(stores)
-    no_memory = 0
+    no_memory = sum(
+        retrieve((), f"cue_{store.owner}_{index}") is not None
+        for store in stores
+        for index in range(100)
+    )
     removal_control = recalled((build_store("a", "map-a", missing="a-target-0"), stores[1]))
     valid_results = [
         store.retrieve(store.owner, store.frame, f"cue_{store.owner}_{index}")

@@ -127,3 +127,110 @@ semantics.
 - No vector database until measured corpus size or retrieval quality requires one.
 - No claim that cognitive resemblance implies cognitive validity.
 - No publication claim inherited from PolyBrains.
+
+---
+
+# v0.2 roadmap — Retrieval calibration and abstention
+
+The v0.1 baseline is frozen at commit `dedfc80`. Its 40/40 false retrievals on unanswerable
+lexical distractors are the motivating failure; do not rewrite that result after improving the
+ranker.
+
+## Proposed claim
+
+- **H-R1:** Compared with v0.1 exact-overlap retrieval, a deterministic calibrated lexical policy
+  reduces false retrieval on held-out lexical collisions without reducing correct answer rate
+  beyond a pre-registered margin.
+
+H-R1 remains a proposal until CP-R0 appends its benchmark, directional prediction, margins, and
+falsification conditions to `PREDICTIONS-MEMORY.md`.
+
+## CP-R0 · Freeze the retrieval-quality experiment
+
+- [ ] Define answerable exact, answerable paraphrase, unanswerable lexical-collision,
+      corrected/stale, contradictory, and unmatched query classes.
+- [ ] Keep owner/frame boundaries explicit and label correctness independently of overlap,
+      confidence, agreement, and retrieval score.
+- [ ] Split policy-development and held-out evaluation fixtures before tuning.
+- [ ] Freeze correct retrieval, false retrieval, answer rate, abstention quality, provenance,
+      records examined, latency, and storage metrics.
+- [ ] Pre-register acceptance margins, replication controls, rival explanations, and invalid-run
+      conditions in append-only `PREDICTIONS-MEMORY.md`.
+
+Gate: every metric has a smallest fixture that can make it fail for its intended reason, and the
+held-out labels are frozen before a new policy is implemented.
+
+## CP-R1 · Reproduce and harden the benchmark harness
+
+- [ ] Reproduce v0.1's 200/200 unique-cue recall, 40/40 distractor false retrieval, 240/240
+      provenance completeness, and 10× examined-record scale control.
+- [ ] Add explicit ground-truth query records so a stored distractor is never inferred to be a
+      valid answer merely because it overlaps.
+- [ ] Prove false retrieval, wrong retrieval, and abstention are scored separately.
+- [ ] Add one perturbation control that changes each reported metric in the expected direction.
+- [ ] Emit one deterministic machine-readable result alongside the human report.
+
+Gate: the unchanged v0.1 policy reproduces its frozen result and every measurement can go red.
+
+## CP-R2 · Smallest deterministic abstention policy
+
+- [ ] Compare the unchanged v0.1 ranker with only standard-library lexical candidates: normalized
+      overlap, minimum score, and top-result margin.
+- [ ] Reuse existing temporal, provenance, lifecycle, and frame filters before adding new scoring.
+- [ ] Choose policy parameters on the development fixture only; run held-out evaluation once.
+- [ ] Return the winning record, score components, runner-up margin, evidence, contradictions, and
+      an explicit abstention reason.
+- [ ] Reject any policy that improves false retrieval by silently converting correct answers into
+      abstentions beyond the CP-R0 margin.
+
+Gate: a retained policy beats v0.1 on the pre-registered primary outcome while satisfying the
+correct-answer and cost margins; otherwise v0.1 remains the result.
+
+## CP-R3 · Robustness and replication
+
+- [ ] Replicate across swapped owner/frame labels and at least three deterministic fixture seeds.
+- [ ] Test paraphrases, token-order changes, shared vocabulary, high-confidence distractors,
+      stale/corrected facts, contradictions, and unmatched queries separately.
+- [ ] Report per-class correctness, false retrieval, answer rate, abstention quality, provenance,
+      latency, examined records, and storage; do not collapse them into one score.
+- [ ] Verify private-frame retrieval and shared-memory consolidation gates remain unchanged.
+- [ ] Record negative, mixed, and invalid runs rather than retaining only the best seed.
+
+Gate: the direction of the held-out result replicates without erasing any disagreement,
+provenance, isolation, lifecycle, or shared-memory guarantee from v0.1.
+
+## CP-R4 · Semantic retrieval — conditional
+
+- [ ] Enter this checkpoint only if CP-R2/R3 measure a paraphrase or vocabulary gap that the
+      deterministic lexical policies cannot close within the registered margins.
+- [ ] Pre-register a lexical-versus-semantic comparison before adding an embedding model,
+      vector database, network service, or new dependency.
+- [ ] Keep embeddings as candidate generation only; preserve deterministic filters, provenance,
+      contradictions, scores, abstentions, and an exact lexical control.
+- [ ] Measure model/download size, indexing time, query latency, storage, reproducibility, and
+      retrieval quality separately.
+- [ ] Remove the semantic path if it does not beat the lexical baseline on the registered outcome.
+
+Gate: no semantic dependency enters the core without a measured retrieval benefit that exceeds
+its pre-registered cost and reproducibility margins.
+
+## CP-R5 · v0.2 release gate
+
+- [ ] Append results to `PREDICTIONS-MEMORY.md` and add immutable reports for every valid or
+      invalid run.
+- [ ] Update `DECISIONS.md`, `README.md`, and this roadmap without rewriting v0.1 evidence.
+- [ ] Run the complete gate, the retrieval benchmark, and `git diff --check` from a clean checkout.
+- [ ] Confirm the agent adapter remains removable and the core remains standard-library-only
+      unless CP-R4 independently justified a dependency.
+- [ ] Commit and tag v0.2 only when all unconditional checkpoints and controls pass.
+
+Gate: a fresh checkout reproduces the selected retrieval result and every v0.1 regression gate;
+known failures, conditional exclusions, and measured costs are explicit.
+
+## v0.2 exclusions until evidence changes them
+
+- No language model, generation, or RAG answer synthesis in the retrieval-quality experiment.
+- No embedding or vector database before CP-R4's measured-gap gate.
+- No tuning on held-out labels and no post-hoc acceptance-margin changes.
+- No aggregate score that hides false retrieval, answer loss, provenance loss, or cost.
+- No new cognitive mechanism, Monty adapter, or shared-memory policy in this release.

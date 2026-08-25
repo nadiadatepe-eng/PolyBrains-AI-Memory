@@ -11,7 +11,6 @@ from polybrains import (
     Scope,
     SignedClaim,
     consolidate,
-    consolidate_shared,
     retrieve,
     retrieve_claim,
     retrieve_framewise,
@@ -233,13 +232,12 @@ class MemoryTests(TestCase):
         exchange.publish(private)
         exchange.publish(public)
 
-        policy_claims = tuple(claim for claim in exchange.claims if claim.scope is Scope.SHARED)
         before = exchange.claims
-        pooled = consolidate_shared(policy_claims, "pooled")
-        majority = consolidate_shared(policy_claims, "majority")
-        confidence = consolidate_shared(policy_claims, "confidence")
-        before_outcome = consolidate_shared(policy_claims, "conservative")
-        conservative = consolidate_shared(policy_claims, "conservative", {true_record.record_id})
+        pooled = exchange.consolidate("bridge", "pooled")
+        majority = exchange.consolidate("bridge", "majority")
+        confidence = exchange.consolidate("bridge", "confidence")
+        before_outcome = exchange.consolidate("bridge", "conservative")
+        conservative = exchange.consolidate("bridge", "conservative", {true_record.record_id})
 
         self.assertEqual({record.payload for record in pooled}, {b"bridge is closed", b"bridge is open"})
         self.assertEqual(majority[0].payload, b"bridge is closed")
@@ -249,7 +247,9 @@ class MemoryTests(TestCase):
         self.assertEqual(exchange.claims, before)
         self.assertEqual(len(exchange.agreement("b", "bridge", b"bridge is closed")), 3)
         self.assertEqual(len(exchange.contradictions("b", shared_claims[0].claim_id)), 1)
-        self.assertEqual(exchange.silent(members), frozenset({"f"}))
+        self.assertEqual(exchange.contradictions("b", "e:abstain"), ())
+        self.assertEqual(exchange.silent(members, "bridge"), frozenset({"f"}))
+        self.assertEqual(exchange.silent(members, "note"), frozenset(members))
         self.assertEqual(sum(claim.abstained for claim in exchange.claims), 1)
         self.assertEqual({claim.source for claim in shared_claims[:3]}, {"correlated-prior"})
         self.assertNotIn(private, exchange.read("b"))
@@ -264,8 +264,10 @@ class MemoryTests(TestCase):
             tuple(int(any(record.payload == b"bridge is open" for record in arm)) for arm in (pooled, majority, confidence, conservative)),
             (1, 0, 0, 1),
         )
+        forged = replace(shared_claims[0], claim_id="a:forged", subject="forged", payload=b"bridge is open")
         with self.assertRaises(PermissionError):
-            exchange.publish(replace(shared_claims[0], payload=b"bridge is open"))
+            exchange.publish(forged)
+        self.assertEqual(exchange.consolidate("forged", "pooled"), ())
 
     def test_m7_cutoff_decay_removes_stale_errors_without_losing_fresh_recall(self):
         cutoff = NOW - timedelta(days=5)
@@ -313,3 +315,11 @@ class MemoryTests(TestCase):
         self.assertTrue(all(marker.reason == "decay: five-day retention" for marker in markers))
         self.assertTrue(all(record in decayed.records for record in old))
         self.assertEqual(decayed.retrieve("a", "map-a", "epsilon"), boundary)
+
+        collision = EpisodicStore("a", "map-a")
+        for record in (*old, episode("decay-old-beta", "a", "map-a", "reserved marker", 0.5)):
+            collision.append(record)
+        before_collision = collision.records
+        with self.assertRaisesRegex(ValueError, "marker record_id"):
+            collision.decay(cutoff, "decay: five-day retention", NOW)
+        self.assertEqual(collision.records, before_collision)

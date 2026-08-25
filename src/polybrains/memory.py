@@ -247,17 +247,29 @@ class ClaimExchange:
     def contradictions(self, requester: str, claim_id: str) -> tuple[SignedClaim, ...]:
         visible = self.read(requester)
         claim = next(claim for claim in visible if claim.claim_id == claim_id)
+        if claim.abstained:
+            return ()
         return tuple(
             other
             for other in visible
             if other.subject == claim.subject and not other.abstained and other.payload != claim.payload
         )
 
-    def silent(self, expected: Iterable[str]) -> frozenset[str]:
-        return frozenset(expected) - {claim.author for claim in self._claims}
+    def silent(self, expected: Iterable[str], subject: str, scope: Scope = Scope.SHARED) -> frozenset[str]:
+        return frozenset(expected) - {
+            claim.author for claim in self._claims if claim.subject == subject and claim.scope is scope
+        }
+
+    def consolidate(
+        self, subject: str, policy: str, verified_evidence: Iterable[str] = ()
+    ) -> tuple[SharedRecord, ...]:
+        claims = (
+            claim for claim in self._claims if claim.subject == subject and claim.scope is Scope.SHARED
+        )
+        return _consolidate_shared(claims, policy, verified_evidence)
 
 
-def consolidate_shared(
+def _consolidate_shared(
     claims: Iterable[SignedClaim], policy: str, verified_evidence: Iterable[str] = ()
 ) -> tuple[SharedRecord, ...]:
     claims = [claim for claim in claims if not claim.abstained]
@@ -515,6 +527,9 @@ class EpisodicStore:
             and record.record_id not in hidden
             and _utc(record.event_time) < cutoff
         ]
+        marker_ids = {f"decay-{record.record_id}" for record in stale}
+        if marker_ids & self._ids:
+            raise ValueError("decay marker record_id already exists")
         return tuple(
             self.transition(record.record_id, f"decay-{record.record_id}", Lifecycle.ARCHIVED, reason, write_time)
             for record in stale
