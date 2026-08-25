@@ -140,9 +140,13 @@ def evaluate(split: str, policy: tuple[str, Fraction, Fraction]) -> dict[str, ob
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("split", choices=("development", "heldout"))
-    parser.add_argument("--policy", choices=tuple(policy[0] for policy in POLICIES))
+    parser.add_argument("--policy", choices=(*tuple(policy[0] for policy in POLICIES), "frozen"))
     args = parser.parse_args()
-    selected = [policy for policy in POLICIES if args.policy in (None, policy[0])]
+    selected = [
+        policy for policy in POLICIES
+        if args.policy in (None, policy[0])
+        or (args.policy == "frozen" and policy[0] in ("v0.1", "minimum-3/4"))
+    ]
     print(json.dumps([evaluate(args.split, policy) for policy in selected], sort_keys=True, indent=2))
 
 

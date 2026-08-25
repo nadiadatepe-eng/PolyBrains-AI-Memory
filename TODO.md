@@ -174,13 +174,13 @@ Gate: the unchanged v0.1 policy reproduces its frozen result and every measureme
 
 ## CP-R2 · Smallest deterministic abstention policy
 
-- [ ] Compare the unchanged v0.1 ranker with only standard-library lexical candidates: normalized
+- [x] Compare the unchanged v0.1 ranker with only standard-library lexical candidates: normalized
       overlap, minimum score, and top-result margin.
-- [ ] Reuse existing temporal, provenance, lifecycle, and frame filters before adding new scoring.
-- [ ] Choose policy parameters on the development fixture only; run held-out evaluation once.
-- [ ] Return the winning record, score components, runner-up margin, evidence, contradictions, and
+- [x] Reuse existing temporal, provenance, lifecycle, and frame filters before adding new scoring.
+- [x] Choose policy parameters on the development fixture only; run held-out evaluation once.
+- [x] Return the winning record, score components, runner-up margin, evidence, contradictions, and
       an explicit abstention reason.
-- [ ] Reject any policy that improves false retrieval by silently converting correct answers into
+- [x] Reject any policy that improves false retrieval by silently converting correct answers into
       abstentions beyond the CP-R0 margin.
 
 Gate: a retained policy beats v0.1 on the pre-registered primary outcome while satisfying the

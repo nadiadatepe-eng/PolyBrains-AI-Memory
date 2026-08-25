@@ -1,0 +1,14 @@
+{
+  "run": "heldout-once",
+  "fixture_sha256": "f241fe5d12a00aba3eb85dec261547eae63d6351228673d144c6e9b1374c8fd0",
+  "control": {
+    "policy": "v0.1",
+    "outcomes": {"correct_retrieval":2,"wrong_retrieval":1,"false_retrieval":1,"correct_abstention":1,"missed_answer":1},
+    "metrics": {"correct_retrieval_rate":0.5,"false_retrieval_rate":0.5,"answer_rate":0.6666666666666666,"abstention_precision":0.5,"abstention_recall":0.5,"provenance_completeness":1.0,"records_examined":31,"median_latency_ns":74932.0,"p95_latency_ns":82350,"serialized_storage_bytes":3364}
+  },
+  "candidate": {
+    "policy": "minimum-3/4",
+    "outcomes": {"correct_retrieval":2,"wrong_retrieval":1,"false_retrieval":0,"correct_abstention":2,"missed_answer":1},
+    "metrics": {"correct_retrieval_rate":0.5,"false_retrieval_rate":0.0,"answer_rate":0.5,"abstention_precision":0.6666666666666666,"abstention_recall":1.0,"provenance_completeness":1.0,"records_examined":31,"median_latency_ns":51094.5,"p95_latency_ns":81493,"serialized_storage_bytes":3364}
+  }
+}

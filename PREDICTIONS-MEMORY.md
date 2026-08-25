@@ -330,3 +330,17 @@ more and loses answers beyond the margin fails. A valid negative result retains 
 direction does not replicate on development, or if the harness cannot fail under its registered
 perturbations. Any fixture/hash mismatch, label leakage, unequal candidate boundary, post-held-out
 tuning, or v0.1 regression makes the run invalid rather than negative.
+
+## R2 — lexical calibration result
+
+**Run:** 2026-08-25. Candidate `minimum-3/4` was frozen at commit `bf1aa68` before one held-out
+run. The held-out fixture hash matched R0.
+
+The candidate reduced held-out false retrieval from 1/2 to 0/2 and preserved correct retrieval at
+2/4, provenance completeness at 100%, examined records at 31, and serialized storage at 3,364
+bytes. Median latency was 51,094.5 ns versus 74,932 ns for v0.1. It met all registered held-out
+margins and showed the same false-retrieval direction on development.
+
+The result is mixed: development correct retrieval fell from 2/4 to 1/4 because a valid correction
+and lexical collision both scored 1/2. The candidate is retained only for CP-R3 replication and
+has not entered the memory core. Report: `reports/cp-r2-heldout.md`.
