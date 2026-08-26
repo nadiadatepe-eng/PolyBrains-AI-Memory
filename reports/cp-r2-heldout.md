@@ -1,6 +1,6 @@
 # CP-R2 — held-out lexical calibration result
 
-**Run:** 2026-08-25, once after candidate freeze at `bf1aa68`  
+**Run:** 2026-08-25, once after candidate freeze at `57431e0`
 **Arms:** unchanged v0.1 versus frozen minimum normalized query coverage 3/4
 
 | held-out metric | v0.1 | minimum-3/4 |

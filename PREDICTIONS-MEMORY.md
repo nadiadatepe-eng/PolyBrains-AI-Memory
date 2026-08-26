@@ -333,7 +333,7 @@ tuning, or v0.1 regression makes the run invalid rather than negative.
 
 ## R2 — lexical calibration result
 
-**Run:** 2026-08-25. Candidate `minimum-3/4` was frozen at commit `bf1aa68` before one held-out
+**Run:** 2026-08-25. Candidate `minimum-3/4` was frozen at commit `57431e0` before one held-out
 run. The held-out fixture hash matched R0.
 
 The candidate reduced held-out false retrieval from 1/2 to 0/2 and preserved correct retrieval at

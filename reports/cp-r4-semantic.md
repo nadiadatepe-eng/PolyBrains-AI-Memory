@@ -1,7 +1,7 @@
 # CP-R4 — conditional semantic retrieval
 
 **Run:** 2026-08-25  
-**Pre-registration:** commits `d43b794` and `fbbedc9`  
+**Pre-registration:** commits `0686ba9` and `48833bf`
 **Model:** `sentence-transformers/all-MiniLM-L6-v2`, revision `1110a24`, CPU, safetensors  
 **Selected on development:** cosine threshold 0.55
 
