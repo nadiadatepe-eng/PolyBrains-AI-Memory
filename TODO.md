@@ -216,13 +216,13 @@ its pre-registered cost and reproducibility margins.
 
 ## CP-R5 · v0.2 release gate
 
-- [ ] Append results to `PREDICTIONS-MEMORY.md` and add immutable reports for every valid or
+- [x] Append results to `PREDICTIONS-MEMORY.md` and add immutable reports for every valid or
       invalid run.
-- [ ] Update `DECISIONS.md`, `README.md`, and this roadmap without rewriting v0.1 evidence.
-- [ ] Run the complete gate, the retrieval benchmark, and `git diff --check` from a clean checkout.
-- [ ] Confirm the agent adapter remains removable and the core remains standard-library-only
+- [x] Update `DECISIONS.md`, `README.md`, and this roadmap without rewriting v0.1 evidence.
+- [x] Run the complete gate, the retrieval benchmark, and `git diff --check` from a clean checkout.
+- [x] Confirm the agent adapter remains removable and the core remains standard-library-only
       unless CP-R4 independently justified a dependency.
-- [ ] Commit and tag v0.2 only when all unconditional checkpoints and controls pass.
+- [x] Commit and tag v0.2 only when all unconditional checkpoints and controls pass.
 
 Gate: a fresh checkout reproduces the selected retrieval result and every v0.1 regression gate;
 known failures, conditional exclusions, and measured costs are explicit.

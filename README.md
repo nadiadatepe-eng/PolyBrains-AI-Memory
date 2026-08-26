@@ -25,3 +25,12 @@ The active roadmap is `TODO.md`; the complete inherited checkpoint ledger is ret
 in `ORIGIN-TODO.md`. The first implementation target is a deterministic, model-independent memory
 record and private episodic store in `src/polybrains/memory.py`. The core and its gate use only the
 Python standard library. Monty and agent-framework integrations are adapters, not core dependencies.
+
+## v0.2 retrieval result
+
+The exact lexical v0.1 baseline remains the standard-library core policy. A calibrated lexical
+threshold reduced false retrieval on the held-out fixture but failed three-seed replication and was
+rejected. An optional pinned MiniLM benchmark recovered all three replication paraphrases within
+the pre-registered quality and cost margins; it remains candidate generation outside the core and
+adds no runtime dependency. See `reports/cp-r5-v02-release.md` for the release evidence and known
+limitations.

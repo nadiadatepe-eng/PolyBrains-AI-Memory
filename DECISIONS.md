@@ -5,6 +5,18 @@ they constrain future work.
 
 ---
 
+## 2026-08-26 · v0.2 retains the lexical core and optional semantic evidence
+
+The minimum-3/4 lexical policy is rejected because its held-out false-retrieval improvement did
+not replicate without answer loss. The exact lexical v0.1 policy therefore remains the core
+default rather than promoting a brittle threshold.
+
+The pinned MiniLM candidate passed the separately pre-registered CP-R4 gate and is retained only
+as an optional benchmark path. It does not enter `src/polybrains/`, the package surface, or the
+mandatory gate: the measured 91.6 MB model and 1.29 GB isolated environment are evidence costs,
+not core requirements. Semantic similarity remains candidate generation and does not validate
+confidence, agreement, or correctness.
+
 ## 2026-08-23 · Independent memory project, not a shared working tree
 
 PolyBrains-AI-Memory begins from PolyBrains commit `fb8071d` but is a separate project. Claude's
