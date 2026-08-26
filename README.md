@@ -35,6 +35,15 @@ the pre-registered quality and cost margins; it remains candidate generation out
 adds no runtime dependency. See `reports/cp-r5-v02-release.md` for the release evidence and known
 limitations.
 
+## v0.3 reliability result
+
+A pre-registered deterministic benchmark separates relevance from reliability when private
+memories contradict. Explicit active `supports`/`contradicts` links selected verified outcomes and
+abstained on unsupported conflicts across development, one-shot held-out evaluation, three seeds,
+confidence reversal, lifecycle correction, and owner/frame swaps. Similarity and confidence remain
+retrieval signals, not correctness evidence. The measured rule stays outside the core API; see
+`reports/cp-c2-replication.md`.
+
 ## Acknowledgements and attribution
 
 This independent project builds on ideas developed by others; their theories and software remain

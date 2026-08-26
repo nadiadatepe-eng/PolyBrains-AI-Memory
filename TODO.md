@@ -278,12 +278,12 @@ Gate: outcome/provenance gating beats both controls on every conjunctive margin 
 
 ## CP-C2 · Replication and v0.3 decision
 
-- [ ] Replicate across at least three deterministic seeds, swapped owner/frame labels, reversed
+- [x] Replicate across at least three deterministic seeds, swapped owner/frame labels, reversed
       confidence ordering, stale/corrected outcomes, and missing-outcome controls.
-- [ ] Keep relevance quality separate from reliability quality; do not collapse them into one
+- [x] Keep relevance quality separate from reliability quality; do not collapse them into one
       score.
-- [ ] Record valid negative, mixed, and invalid runs and keep the v0.1/v0.2 regression gate green.
-- [ ] Update the prediction ledger, immutable reports, decisions, README, and roadmap before any
+- [x] Record valid negative, mixed, and invalid runs and keep the v0.1/v0.2 regression gate green.
+- [x] Update the prediction ledger, immutable reports, decisions, README, and roadmap before any
       v0.3 tag.
 
 Gate: retain only a reliability rule whose direction replicates without weakening provenance,

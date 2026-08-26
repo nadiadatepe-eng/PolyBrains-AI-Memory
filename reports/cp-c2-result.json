@@ -1,0 +1,11 @@
+{
+  "config_sha256": "b0f4dae0d46171f5502e6607a8126ac546297adb28bd257b9dc289fd89732f52",
+  "candidate_commit": "6cc1bc2",
+  "status": "passes-preregistered-replication-gate",
+  "seeds": {
+    "11": {"similarity-only":{"correct":1,"wrong":1,"false":2},"confidence-ranked":{"correct":1,"wrong":1,"false":2},"outcome-provenance":{"correct":2,"wrong":0,"false":0,"correct_abstention":2,"missed":0},"examined":32,"storage_bytes":3734,"swap_match":true},
+    "23": {"similarity-only":{"correct":1,"wrong":1,"false":2},"confidence-ranked":{"correct":2,"wrong":0,"false":2},"outcome-provenance":{"correct":2,"wrong":0,"false":0,"correct_abstention":2,"missed":0},"examined":32,"storage_bytes":3722,"swap_match":true},
+    "37": {"similarity-only":{"correct":1,"wrong":1,"false":2},"confidence-ranked":{"correct":1,"wrong":1,"false":2},"outcome-provenance":{"correct":2,"wrong":0,"false":0,"correct_abstention":2,"missed":0},"examined":32,"storage_bytes":4193,"swap_match":true}
+  },
+  "integration": "retained benchmark policy; no new core API or dependency"
+}

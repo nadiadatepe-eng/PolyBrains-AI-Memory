@@ -5,6 +5,18 @@ they constrain future work.
 
 ---
 
+## 2026-08-26 · Explicit linked outcomes can gate contradictions
+
+The v0.3 outcome/provenance rule is retained as measured benchmark evidence. Across development,
+one-shot held-out evaluation, and three replication seeds, it selected the uniquely supported
+candidate, abstained when conflicting candidates lacked outcome links, and preserved uncontested
+answers. Reversed confidence and superseded evidence did not change that direction.
+
+This does not make provenance or an `observed` source label synonymous with truth. The rule uses
+explicit active `supports` and `contradicts` links, and abstains without them. It remains outside
+the core API until a broader workload demonstrates that this candidate-boundary contract belongs
+there.
+
 ## 2026-08-26 · v0.2 retains the lexical core and optional semantic evidence
 
 The minimum-3/4 lexical policy is rejected because its held-out false-retrieval improvement did

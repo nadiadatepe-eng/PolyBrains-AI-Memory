@@ -7,3 +7,5 @@ python3 tools/measure_m2_recall.py
 test "$(python3 tools/measure_m2_recall.py --json)" = "$(cat reports/cp-r1-v01-result.json)"
 python3 tools/measure_r2_retrieval.py heldout --policy frozen >/dev/null
 python3 tools/measure_r3_replication.py >/dev/null
+python3 tools/measure_c1_reliability.py development >/dev/null
+python3 tools/measure_c2_replication.py >/dev/null

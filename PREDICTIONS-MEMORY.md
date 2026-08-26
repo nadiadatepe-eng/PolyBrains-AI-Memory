@@ -471,3 +471,14 @@ config froze fields rather than materialized query rows.
 Seed 23's reversed confidence may make confidence-ranked correct on the verified query. Replication
 therefore requires outcome/provenance to be no worse on correct or wrong retrieval and strictly
 better on unsupported false retrieval; it does not require improvement over a zero wrong count.
+
+## C2 — contradiction reliability replication result
+
+**Run:** 2026-08-26 after runner freeze at `6cc1bc2`. The replication config hash matched C0.
+
+Outcome/provenance produced 2 correct, 0 wrong, 0 false, 2 correct abstentions, and 0 missed
+answers on seeds 11, 23, and 37. Similarity-only produced 1 correct, 1 wrong, and 2 false on every
+seed. Confidence-ranked matched that on seeds 11 and 37; reversed confidence produced 2 correct,
+0 wrong, and 2 false on seed 23. All swaps matched, provenance was complete, examined cost was
+equal, and superseded stale evidence was excluded. H-C1 passes its registered replication gate.
+Report: `reports/cp-c2-replication.md`.
