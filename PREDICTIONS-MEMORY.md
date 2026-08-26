@@ -458,3 +458,16 @@ abstention, and 0 missed answers. Each control returned 1 correct, 1 wrong, and 
 Provenance was complete, examined cost and storage were equal, and candidate median latency was
 within the frozen 3× margin. Every held-out clause passed; CP-C2 replication remains mandatory.
 Report: `reports/cp-c1-heldout.md`.
+
+### C2 pre-run clarification
+
+Before executing replication, the config's registered text fields are expanded by one fixed rule:
+the verified query is `<subject> current status`; the unverified query removes the first directional
+token from `ambiguous_a`; the exact query equals `exact`; and the missing-outcome pair is
+`backup|reserve <subject> status ready` queried as `<subject> status ready`. Expected outcomes and
+candidate boundaries follow the C0 classes. This adds no parameter and is recorded because the
+config froze fields rather than materialized query rows.
+
+Seed 23's reversed confidence may make confidence-ranked correct on the verified query. Replication
+therefore requires outcome/provenance to be no worse on correct or wrong retrieval and strictly
+better on unsupported false retrieval; it does not require improvement over a zero wrong count.
