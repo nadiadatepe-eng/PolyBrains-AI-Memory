@@ -253,12 +253,12 @@ controls, and falsification conditions to `PREDICTIONS-MEMORY.md`.
 
 ## CP-C0 · Publish v0.2 and freeze the contradiction experiment
 
-- [ ] Add `CITATION.cff` and publish the existing CP-R5 report as the GitHub v0.2 release notes.
-- [ ] Define the smallest deterministic fixture with a high-confidence prior, contradictory
+- [x] Add `CITATION.cff` and publish the existing CP-R5 report as the GitHub v0.2 release notes.
+- [x] Define the smallest deterministic fixture with a high-confidence prior, contradictory
       observed outcome, provenance, owner/frame boundary, and explicit ground truth.
-- [ ] Freeze similarity-only, confidence-ranked, and outcome/provenance-gated arms before running
+- [x] Freeze similarity-only, confidence-ranked, and outcome/provenance-gated arms before running
       the new policy.
-- [ ] Pre-register wrong retrieval, correct retrieval, false retrieval, abstention, provenance,
+- [x] Pre-register wrong retrieval, correct retrieval, false retrieval, abstention, provenance,
       examined-record, latency, and storage margins in append-only `PREDICTIONS-MEMORY.md`.
 
 Gate: the fixture and each metric can fail for its claimed reason; no outcome label is available

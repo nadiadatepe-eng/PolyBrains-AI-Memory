@@ -438,3 +438,13 @@ latency, and reproduce the direction on development and seeds 11, 23, and 37.
 bought through missed answers. Hash, boundary, label-access, lifecycle, swap, measurement, or v0.2
 gate failures make a run invalid rather than negative. Confidence reversal, superseded evidence,
 and missing-outcome cases are mandatory controls.
+
+## C1 — development selection
+
+**Run:** 2026-08-26, before held-out evaluation. The frozen fixture hash matched C0. Both controls
+produced 1 correct, 1 wrong, and 1 false retrieval. The parameter-free outcome/provenance arm
+produced 2 correct, 0 wrong, 0 false, 1 correct abstention, and 0 missed answers with complete
+provenance, equal examined cost, and unchanged storage. Every registered perturbation went red.
+
+The unchanged `outcome-provenance` arm advances to one held-out run. No threshold, source label,
+confidence rule, or post-result parameter was selected. Report: `reports/cp-c1-development.md`.

@@ -1,0 +1,10 @@
+{
+  "split": "development",
+  "fixture_sha256": "2eeccbf54ba01f2a7764c9da89b0b4699e6aaa7ecdccdbe6086a5a893b705ebe",
+  "results": {
+    "similarity-only": {"correct_retrieval":1,"wrong_retrieval":1,"false_retrieval":1,"correct_abstention":0,"missed_answer":0,"provenance":1.0,"examined":18,"storage_bytes":2937},
+    "confidence-ranked": {"correct_retrieval":1,"wrong_retrieval":1,"false_retrieval":1,"correct_abstention":0,"missed_answer":0,"provenance":1.0,"examined":18,"storage_bytes":2937},
+    "outcome-provenance": {"correct_retrieval":2,"wrong_retrieval":0,"false_retrieval":0,"correct_abstention":1,"missed_answer":0,"provenance":1.0,"examined":18,"storage_bytes":2937}
+  },
+  "candidate": "outcome-provenance"
+}
