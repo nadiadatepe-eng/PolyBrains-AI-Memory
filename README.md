@@ -34,3 +34,22 @@ rejected. An optional pinned MiniLM benchmark recovered all three replication pa
 the pre-registered quality and cost margins; it remains candidate generation outside the core and
 adds no runtime dependency. See `reports/cp-r5-v02-release.md` for the release evidence and known
 limitations.
+
+## Acknowledgements and attribution
+
+This independent project builds on ideas developed by others; their theories and software remain
+their work. In particular:
+
+- Jeff Hawkins and collaborators developed Thousand Brains Theory and the reference-frame account
+  of cortical intelligence.
+- Viviane Clay, Niels Leadholm, Jeff Hawkins, and the Thousand Brains Project developed the Monty
+  research platform and its published thousand-brains system.
+- Dedre Gentner developed structure-mapping theory; Gentner and Arthur Markman developed its
+  comparison with similarity.
+- The optional semantic benchmark uses Sentence Transformers and the
+  `sentence-transformers/all-MiniLM-L6-v2` model created by its respective authors and maintainers.
+
+The source record and publication links are listed in `reports/sources/README.md` and the relevant
+experiment reports. PolyBrains-AI-Memory claims only its own hypotheses, implementations,
+measurements, and interpretations; it is not affiliated with or endorsed by those authors or
+organizations.
