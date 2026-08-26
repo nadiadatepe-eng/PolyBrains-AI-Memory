@@ -289,9 +289,98 @@ Gate: outcome/provenance gating beats both controls on every conjunctive margin 
 Gate: retain only a reliability rule whose direction replicates without weakening provenance,
 frame isolation, lifecycle history, or abstention accounting.
 
+## CP-C3 · v0.3 release gate
+
+- [ ] Confirm every CP-C0–C2 valid, mixed, negative, or invalid run has an immutable report and
+      machine-readable result where applicable.
+- [ ] Update `CITATION.cff` to v0.3 and state explicitly that the retained scorer remains a
+      benchmark policy outside the core API.
+- [ ] Reproduce the complete gate and `git diff --check` from a clean checkout.
+- [ ] Tag and publish v0.3 only when the public commit matches the verified checkout.
+
+Gate: v0.3 publishes the narrow replicated result without claiming that provenance or linked
+evidence is inherently correct.
+
 ## v0.3 exclusions until evidence changes them
 
 - No RAG or generated answer synthesis.
 - No vector database, new embedding model, or semantic fine-tuning.
 - No rule that treats confidence, agreement, similarity, source labels, or recency as correctness.
 - No shared-memory consolidation change before private retrieval reliability is measured.
+
+---
+
+# v0.4 roadmap — Who verifies the verifier?
+
+CP-C2 trusted explicit active evidence links. The next failure surface is whether those links are
+authentic, independent, current, and non-circular. Authentication can establish authorship; it
+cannot establish correctness.
+
+## Proposed claim
+
+- **H-E1:** Compared with naive link counting and authentication alone, a deterministic gate that
+  requires authenticated, active, independently evidenced support reduces wrong consolidation
+  under forged, replayed, duplicated, correlated, cyclic, and authorized-but-false evidence
+  without unacceptable answer loss.
+
+H-E1 remains a proposal until CP-E0 appends exact fixtures, threat assumptions, margins, controls,
+and falsification conditions to `PREDICTIONS-MEMORY.md`.
+
+## CP-E0 · Freeze the evidence-trust experiment
+
+- [ ] Define the trust boundary: member keys authenticate authorship only; expected outcomes remain
+      scoring labels and never enter the policy.
+- [ ] Freeze cases for forged signatures, replayed claim IDs, duplicated evidence, correlated
+      authors, dangling links, cycles, superseded evidence, independent correct evidence,
+      authorized false evidence, and explicit abstention.
+- [ ] Compare naive link count, authenticated-link count, and authenticated independent-evidence
+      gating on identical visible claims and candidate boundaries.
+- [ ] Pre-register correctness, wrong/false consolidation, answer loss, abstention, forgery/replay
+      rejection, provenance, examined cost, latency, and storage separately.
+
+Gate: each attack and metric has one smallest perturbation that fails for its intended reason.
+
+## CP-E1 · Harden the evidence harness
+
+- [ ] Reuse `SignedClaim`, `ClaimExchange`, lifecycle records, and existing conservative
+      consolidation before adding a trust type or dependency.
+- [ ] Prove signature validation rejects forgery and duplicate claim IDs reject replay, while an
+      authenticated false member remains admissible to the harness.
+- [ ] Prove duplicate/correlated support cannot masquerade as independent evidence and cycles or
+      dangling links cannot validate themselves.
+- [ ] Freeze development selection before one held-out run; retain every negative or invalid run.
+
+Gate: the harness distinguishes authenticity, independence, relevance, confidence, agreement, and
+correctness rather than treating any pair as synonyms.
+
+## CP-E2 · Smallest independent-evidence gate
+
+- [ ] Implement only the minimum deterministic rule that survives CP-E1; keep candidate generation
+      and evidence validation separate.
+- [ ] Return the selected claim, evidence chain, rejected links and reasons, contradictions,
+      silent members, and explicit abstention reason.
+- [ ] Reject the rule if it reduces wrong consolidation by exceeding the registered correct-answer
+      or abstention margin.
+- [ ] Keep the core API unchanged unless held-out evidence independently justifies integration.
+
+Gate: the candidate beats both frozen controls on every conjunctive held-out margin or is rejected.
+
+## CP-E3 · Replication and v0.4 decision
+
+- [ ] Replicate across at least three seeds, owner/frame renaming, signer-order permutations,
+      reversed confidence, and different correlated-group sizes.
+- [ ] Keep attack rejection, retrieval quality, consolidation quality, and cost as separate tables.
+- [ ] Record all runs and verify every v0.1–v0.3 regression gate from a clean checkout.
+- [ ] Update predictions, immutable reports, decisions, README, roadmap, citation, and release notes
+      before any v0.4 tag.
+
+Gate: retain only a rule whose direction replicates without erasing minority evidence,
+contradictions, abstentions, provenance, lifecycle history, or private-frame isolation.
+
+## v0.4 exclusions until evidence changes them
+
+- No claim that a valid signature, trusted member, source label, majority, or evidence count is
+  proof of correctness.
+- No public-key infrastructure, decentralized identity system, trust graph, or external service.
+- No learned trust score, language-model judge, RAG synthesis, or vector database.
+- No shared-memory default change before the independent-evidence gate replicates.
