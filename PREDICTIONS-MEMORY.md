@@ -448,3 +448,13 @@ provenance, equal examined cost, and unchanged storage. Every registered perturb
 
 The unchanged `outcome-provenance` arm advances to one held-out run. No threshold, source label,
 confidence rule, or post-result parameter was selected. Report: `reports/cp-c1-development.md`.
+
+## C1 — held-out reliability result
+
+**Run:** 2026-08-26, once after candidate freeze at `ad11787`. The held-out fixture hash matched C0.
+
+The unchanged candidate returned 2 correct answers, 0 wrong answers, 0 false returns, 1 correct
+abstention, and 0 missed answers. Each control returned 1 correct, 1 wrong, and 1 false retrieval.
+Provenance was complete, examined cost and storage were equal, and candidate median latency was
+within the frozen 3× margin. Every held-out clause passed; CP-C2 replication remains mandatory.
+Report: `reports/cp-c1-heldout.md`.

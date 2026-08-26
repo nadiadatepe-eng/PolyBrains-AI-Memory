@@ -266,12 +266,12 @@ to the retrieval policy except through an explicit stored record.
 
 ## CP-C1 · Smallest deterministic reliability gate
 
-- [ ] Reuse existing lifecycle, provenance, owner/frame, and contradiction records before adding
+- [x] Reuse existing lifecycle, provenance, owner/frame, and contradiction records before adding
       a new record type or scorer.
-- [ ] Compare the three frozen arms on development, then run held-out evaluation once.
-- [ ] Return the selected record, relevant evidence, contradiction set, reliability reason, and
+- [x] Compare the three frozen arms on development, then run held-out evaluation once.
+- [x] Return the selected record, relevant evidence, contradiction set, reliability reason, and
       explicit abstention reason.
-- [ ] Reject the gate if wrong retrieval falls only because answerable queries become abstentions
+- [x] Reject the gate if wrong retrieval falls only because answerable queries become abstentions
       beyond the registered margin.
 
 Gate: outcome/provenance gating beats both controls on every conjunctive margin or is rejected.

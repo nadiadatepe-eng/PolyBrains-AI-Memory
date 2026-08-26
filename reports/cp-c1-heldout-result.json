@@ -1,0 +1,11 @@
+{
+  "split": "heldout-once",
+  "fixture_sha256": "5bd18782f753c75dee126dcd8190f16538836309abca080ded1ad84cdc795ef2",
+  "candidate_commit": "ad11787",
+  "results": {
+    "similarity-only": {"correct_retrieval":1,"wrong_retrieval":1,"false_retrieval":1,"correct_abstention":0,"missed_answer":0,"provenance":1.0,"examined":18,"median_latency_ns":63715.5,"p95_latency_ns":68825,"storage_bytes":2944},
+    "confidence-ranked": {"correct_retrieval":1,"wrong_retrieval":1,"false_retrieval":1,"correct_abstention":0,"missed_answer":0,"provenance":1.0,"examined":18,"median_latency_ns":63739.5,"p95_latency_ns":68330,"storage_bytes":2944},
+    "outcome-provenance": {"correct_retrieval":2,"wrong_retrieval":0,"false_retrieval":0,"correct_abstention":1,"missed_answer":0,"provenance":1.0,"examined":18,"median_latency_ns":60096.0,"p95_latency_ns":71006,"storage_bytes":2944}
+  },
+  "status": "passes-preregistered-heldout-gate"
+}
