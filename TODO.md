@@ -3,6 +3,11 @@
 The inherited PolyBrains checkpoint ledger is preserved unchanged in `ORIGIN-TODO.md`. Its
 results constrain this project but do not count as evidence for the memory hypotheses below.
 
+The long-term project direction is the model-independent reasoning kernel described in
+`docs/reasoning-kernel-vision.md`. Its expected ontology and model-assisted ontology-engineering
+capabilities are design targets, not claims about the current implementation. Each capability must
+enter this roadmap through a separate falsifiable checkpoint.
+
 ## Research claims
 
 - **H-M1:** Compared with one pooled memory, independent per-frame retrieval followed by

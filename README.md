@@ -8,6 +8,14 @@ signals. Each module may retain private episodic and semantic memory in its own 
 retrieval and claim exchange must preserve provenance, contradictions, minority evidence, and
 abstentions before anything is consolidated into shared long-term memory.
 
+## Long-term direction
+
+The project’s north star is a model-independent reasoning kernel for agents that can reason, act,
+learn from outcomes, and adapt while preserving evidence and uncertainty. Replaceable LLM, VLM,
+LCM, LAM, and MLM adapters may assist ontology engineering, but models propose; the kernel governs
+validation, provenance, disagreement, promotion, and revision. The expected architecture, current
+evidence, and missing capabilities are separated in `docs/reasoning-kernel-vision.md`.
+
 ## Initial research areas
 
 - short-term, episodic, semantic, and long-term memory;
