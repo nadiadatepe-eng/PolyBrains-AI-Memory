@@ -19,7 +19,7 @@ abstentions before anything is consolidated into shared long-term memory.
 The complete PolyBrains record remains recoverable at source commit `fb8071d`. Its historical
 state and measured evidence are preserved in `ORIGIN-STATE.md`, `ORIGIN-TODO.md`,
 `PREDICTIONS.md`, `DECISIONS.md`, and `reports/`; inherited executable machinery is not part of
-the active memory project. The original `[source PolyBrains checkout]` project remains separate.
+the active memory project. The original PolyBrains project remains separate.
 
 The active roadmap is `TODO.md`; the complete inherited checkpoint ledger is retained unchanged
 in `ORIGIN-TODO.md`. The first implementation target is a deterministic, model-independent memory

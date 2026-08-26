@@ -119,6 +119,6 @@ upstream/tbp.monty/.venv/bin/python tools/analyse_p15.py
   instances; frames blind to each other.
 - Morpho-HomeGraph is clean and pushed (`219dadf`).
 - **Ask before every push to a public remote**, each time
-  (`[local public-push safety note]`).
+  (the source project's public-push safety note).
 
 **Publication decision remains Nadi's and is not taken.**

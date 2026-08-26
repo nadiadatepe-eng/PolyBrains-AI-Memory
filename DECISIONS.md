@@ -19,9 +19,9 @@ confidence, agreement, or correctness.
 
 ## 2026-08-23 · Independent memory project, not a shared working tree
 
-PolyBrains-AI-Memory begins from PolyBrains commit `fb8071d` but is a separate project. Claude's
-work in `[source PolyBrains checkout]` and Codex's work here must not overwrite or silently synchronize
-one another.
+PolyBrains-AI-Memory begins from PolyBrains commit `fb8071d` but is a separate project. Work in
+the source PolyBrains checkout and work here must not overwrite or silently synchronize one
+another.
 
 The inherited finding that agreement, confidence, and correctness differ becomes a design
 constraint, not proof of a new memory hypothesis. The new contribution surface is explicit

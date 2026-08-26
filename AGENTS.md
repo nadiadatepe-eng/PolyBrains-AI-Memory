@@ -12,8 +12,8 @@
 
 - Nadi is creator and maintainer; Codex (OpenAI) is AI coding collaborator and co-author.
 - This is an independent project copied from PolyBrains at commit `fb8071d`.
-- Claude may continue working in `[source PolyBrains checkout]`; changes never flow between the two trees
-  automatically.
+- Claude may continue working in the source PolyBrains checkout; changes never flow between the
+  two trees automatically.
 
 ## Local Contracts
 
