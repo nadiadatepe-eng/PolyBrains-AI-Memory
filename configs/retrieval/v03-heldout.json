@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "split": "heldout",
+  "records": [
+    {"record_id":"held-lab-prior","owner":"a","frame":"map-a","payload":"laboratory current status unlocked","confidence":0.98,"source":"prior"},
+    {"record_id":"held-lab-outcome","owner":"a","frame":"map-a","payload":"laboratory status locked","confidence":0.55,"source":"observation"},
+    {"record_id":"held-lab-check","owner":"a","frame":"map-a","payload":"audit confirms lock","confidence":0.65,"source":"audit","supports":["held-lab-outcome"],"contradicts":["held-lab-prior"]},
+    {"record_id":"held-dock-east","owner":"a","frame":"map-a","payload":"east dock operational","confidence":0.95,"source":"prior"},
+    {"record_id":"held-dock-west","owner":"a","frame":"map-a","payload":"west dock operational","confidence":0.70,"source":"observation"},
+    {"record_id":"held-vault","owner":"a","frame":"map-a","payload":"vault alarm armed","confidence":0.72,"source":"observation"},
+    {"record_id":"held-foreign","owner":"b","frame":"map-b","payload":"laboratory current status unlocked","confidence":1.0,"source":"foreign"}
+  ],
+  "queries": [
+    {"query_id":"held-verified","class":"verified-contradiction","text":"laboratory current status","requester":"a","frame":"map-a","candidate_ids":["held-lab-prior","held-lab-outcome"],"expected_record_id":"held-lab-outcome"},
+    {"query_id":"held-unverified","class":"unverified-contradiction","text":"dock operational","requester":"a","frame":"map-a","candidate_ids":["held-dock-east","held-dock-west"],"expected_record_id":null},
+    {"query_id":"held-exact","class":"uncontested-exact","text":"vault alarm armed","requester":"a","frame":"map-a","candidate_ids":["held-vault"],"expected_record_id":"held-vault"}
+  ]
+}

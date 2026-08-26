@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "PolyBrains-AI-Memory"
+type: software
+version: 0.2
+date-released: 2026-08-26
+authors:
+  - family-names: Adatepe
+    given-names: Nadi
+  - name: OpenAI Codex
+    website: https://openai.com/codex/
+repository-code: https://github.com/nadiadatepe-eng/PolyBrains-AI-Memory
+license: MIT
+keywords:
+  - agent memory
+  - provenance
+  - abstention
+  - contradiction
+  - multi-agent systems

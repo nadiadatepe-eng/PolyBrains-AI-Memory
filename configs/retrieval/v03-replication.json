@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "seeds": [11, 23, 37],
+  "arms": ["similarity-only", "confidence-ranked", "outcome-provenance"],
+  "owner_frame_swap": {"a":"b","b":"a","map-a":"map-b","map-b":"map-a"},
+  "fixtures": {
+    "11": {"subject":"reactor","prior":"reactor current status online","outcome":"reactor status offline","evidence":"diagnostic confirms shutdown","exact":"coolant pump stable","ambiguous_a":"north valve ready","ambiguous_b":"south valve ready","prior_confidence":0.99,"outcome_confidence":0.60,"evidence_mode":"active"},
+    "23": {"subject":"runway","prior":"runway current status clear","outcome":"runway status blocked","evidence":"inspection confirms obstruction","exact":"beacon light active","ambiguous_a":"east taxiway ready","ambiguous_b":"west taxiway ready","prior_confidence":0.40,"outcome_confidence":0.95,"evidence_mode":"active"},
+    "37": {"subject":"reservoir","prior":"reservoir current status full","outcome":"reservoir status low","evidence":"sensor confirms low level","exact":"spillway gate secured","ambiguous_a":"upper channel open","ambiguous_b":"lower channel open","prior_confidence":0.97,"outcome_confidence":0.58,"evidence_mode":"superseding"}
+  },
+  "required_classes": ["verified-contradiction", "unverified-contradiction", "uncontested-exact", "missing-outcome"],
+  "validity": {"swap_must_preserve_every_outcome":true,"all_v02_gates_must_pass":true,"record_all_seed_results":true}
+}

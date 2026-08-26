@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "split": "development",
+  "records": [
+    {"record_id":"dev-bridge-prior","owner":"a","frame":"map-a","payload":"bridge current status open","confidence":0.99,"source":"prior"},
+    {"record_id":"dev-bridge-outcome","owner":"a","frame":"map-a","payload":"bridge status closed","confidence":0.60,"source":"observation"},
+    {"record_id":"dev-bridge-check","owner":"a","frame":"map-a","payload":"inspection confirms closure","confidence":0.70,"source":"inspection","supports":["dev-bridge-outcome"],"contradicts":["dev-bridge-prior"]},
+    {"record_id":"dev-route-north","owner":"a","frame":"map-a","payload":"north route available","confidence":0.90,"source":"prior"},
+    {"record_id":"dev-route-south","owner":"a","frame":"map-a","payload":"south route available","confidence":0.80,"source":"observation"},
+    {"record_id":"dev-harbor","owner":"a","frame":"map-a","payload":"harbor gate locked","confidence":0.75,"source":"observation"},
+    {"record_id":"dev-foreign","owner":"b","frame":"map-b","payload":"bridge current status open","confidence":1.0,"source":"foreign"}
+  ],
+  "queries": [
+    {"query_id":"dev-verified","class":"verified-contradiction","text":"bridge current status","requester":"a","frame":"map-a","candidate_ids":["dev-bridge-prior","dev-bridge-outcome"],"expected_record_id":"dev-bridge-outcome"},
+    {"query_id":"dev-unverified","class":"unverified-contradiction","text":"route available","requester":"a","frame":"map-a","candidate_ids":["dev-route-north","dev-route-south"],"expected_record_id":null},
+    {"query_id":"dev-exact","class":"uncontested-exact","text":"harbor gate locked","requester":"a","frame":"map-a","candidate_ids":["dev-harbor"],"expected_record_id":"dev-harbor"}
+  ]
+}

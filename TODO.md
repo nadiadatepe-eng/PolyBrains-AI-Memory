@@ -234,3 +234,64 @@ known failures, conditional exclusions, and measured costs are explicit.
 - No tuning on held-out labels and no post-hoc acceptance-margin changes.
 - No aggregate score that hides false retrieval, answer loss, provenance loss, or cost.
 - No new cognitive mechanism, Monty adapter, or shared-memory policy in this release.
+
+---
+
+# v0.3 roadmap — Relevance is not reliability
+
+The v0.2 semantic candidate recovered paraphrases but still returned the high-confidence
+contradictory prior. Similarity solved a vocabulary gap, not correctness.
+
+## Proposed claim
+
+- **H-C1:** When relevant memories contradict, deterministic outcome/provenance gating reduces
+  wrong retrieval relative to similarity-only and confidence-ranked controls without converting
+  the improvement into excess abstention.
+
+H-C1 remains a proposal until CP-C0 appends its fixtures, directional prediction, margins,
+controls, and falsification conditions to `PREDICTIONS-MEMORY.md`.
+
+## CP-C0 · Publish v0.2 and freeze the contradiction experiment
+
+- [ ] Add `CITATION.cff` and publish the existing CP-R5 report as the GitHub v0.2 release notes.
+- [ ] Define the smallest deterministic fixture with a high-confidence prior, contradictory
+      observed outcome, provenance, owner/frame boundary, and explicit ground truth.
+- [ ] Freeze similarity-only, confidence-ranked, and outcome/provenance-gated arms before running
+      the new policy.
+- [ ] Pre-register wrong retrieval, correct retrieval, false retrieval, abstention, provenance,
+      examined-record, latency, and storage margins in append-only `PREDICTIONS-MEMORY.md`.
+
+Gate: the fixture and each metric can fail for its claimed reason; no outcome label is available
+to the retrieval policy except through an explicit stored record.
+
+## CP-C1 · Smallest deterministic reliability gate
+
+- [ ] Reuse existing lifecycle, provenance, owner/frame, and contradiction records before adding
+      a new record type or scorer.
+- [ ] Compare the three frozen arms on development, then run held-out evaluation once.
+- [ ] Return the selected record, relevant evidence, contradiction set, reliability reason, and
+      explicit abstention reason.
+- [ ] Reject the gate if wrong retrieval falls only because answerable queries become abstentions
+      beyond the registered margin.
+
+Gate: outcome/provenance gating beats both controls on every conjunctive margin or is rejected.
+
+## CP-C2 · Replication and v0.3 decision
+
+- [ ] Replicate across at least three deterministic seeds, swapped owner/frame labels, reversed
+      confidence ordering, stale/corrected outcomes, and missing-outcome controls.
+- [ ] Keep relevance quality separate from reliability quality; do not collapse them into one
+      score.
+- [ ] Record valid negative, mixed, and invalid runs and keep the v0.1/v0.2 regression gate green.
+- [ ] Update the prediction ledger, immutable reports, decisions, README, and roadmap before any
+      v0.3 tag.
+
+Gate: retain only a reliability rule whose direction replicates without weakening provenance,
+frame isolation, lifecycle history, or abstention accounting.
+
+## v0.3 exclusions until evidence changes them
+
+- No RAG or generated answer synthesis.
+- No vector database, new embedding model, or semantic fine-tuning.
+- No rule that treats confidence, agreement, similarity, source labels, or recency as correctness.
+- No shared-memory consolidation change before private retrieval reliability is measured.

@@ -415,3 +415,26 @@ The 12,288-byte indexes built in 8.272–12.524 ms; median query latency was 5.1
 environment 1,290,060,543 bytes. Every registered margin passed. The semantic benchmark path is
 retained as optional evidence; no dependency entered the standard-library core. Report:
 `reports/cp-r4-semantic.md`.
+
+## C0 — v0.3 contradiction-reliability protocol
+
+**Registered:** 2026-08-26, before implementing or evaluating the outcome/provenance retrieval
+policy.
+
+Development, held-out, replication fixtures, candidate boundaries, three arms, metrics, controls,
+acceptance margins, and invalid-run conditions are frozen in `docs/reliability-v03-protocol.md`.
+Their SHA-256 hashes are `2eeccbf54ba01f2a7764c9da89b0b4699e6aaa7ecdccdbe6086a5a893b705ebe`,
+`5bd18782f753c75dee126dcd8190f16538836309abca080ded1ad84cdc795ef2`, and
+`b0f4dae0d46171f5502e6607a8126ac546297adb28bd257b9dc289fd89732f52`.
+
+**Prediction:** explicit active `supports`/`contradicts` links will select the observed outcome in
+verified conflicts and abstain on unverified conflicts. Against both similarity-only and
+confidence-ranked controls, the frozen policy will reduce held-out wrong and false retrieval by at
+least 50 percentage points, preserve correct retrieval with zero missed answers and complete
+provenance, scan the same active private records without storage change, remain within 3× median
+latency, and reproduce the direction on development and seeds 11, 23, and 37.
+
+**Falsification:** H-C1 fails if any conjunctive margin fails, including if fewer wrong answers are
+bought through missed answers. Hash, boundary, label-access, lifecycle, swap, measurement, or v0.2
+gate failures make a run invalid rather than negative. Confidence reversal, superseded evidence,
+and missing-outcome cases are mandatory controls.
