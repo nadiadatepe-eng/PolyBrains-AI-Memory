@@ -301,7 +301,7 @@ frame isolation, lifecycle history, or abstention accounting.
 - [x] Update `CITATION.cff` to v0.3 and state explicitly that the retained scorer remains a
       benchmark policy outside the core API.
 - [x] Reproduce the complete gate and `git diff --check` from a clean checkout.
-- [ ] Tag and publish v0.3 only when the public commit matches the verified checkout.
+- [x] Tag and publish v0.3 only when the public commit matches the verified checkout.
 
 Gate: v0.3 publishes the narrow replicated result without claiming that provenance or linked
 evidence is inherently correct.
