@@ -10,7 +10,7 @@ import re
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from enum import Enum
-from typing import Iterable
+from typing import Iterable, cast
 
 
 class MemoryKind(str, Enum):
@@ -272,12 +272,12 @@ class ClaimExchange:
 def _consolidate_shared(
     claims: Iterable[SignedClaim], policy: str, verified_evidence: Iterable[str] = ()
 ) -> tuple[SharedRecord, ...]:
-    claims = [claim for claim in claims if not claim.abstained]
+    claims = [claim for claim in claims if claim.payload is not None]
     if len({claim.subject for claim in claims}) > 1:
         raise ValueError("shared consolidation requires one subject")
     groups: dict[bytes, list[SignedClaim]] = {}
     for claim in claims:
-        groups.setdefault(claim.payload, []).append(claim)
+        groups.setdefault(cast(bytes, claim.payload), []).append(claim)
     if not groups:
         return ()
     verified = set(verified_evidence)
@@ -287,7 +287,7 @@ def _consolidate_shared(
         chosen = [max(groups.values(), key=lambda group: (len(group), max(c.confidence for c in group), group[0].payload))]
     elif policy == "confidence":
         winner = max(claims, key=lambda claim: (claim.confidence, claim.claim_id))
-        chosen = [groups[winner.payload]]
+        chosen = [groups[cast(bytes, winner.payload)]]
     elif policy == "conservative":
         eligible = [group for group in groups.values() if any(verified & set(claim.evidence) for claim in group)]
         if not eligible:
@@ -308,7 +308,7 @@ def _consolidate_shared(
     return tuple(
         SharedRecord(
             policy,
-            group[0].payload,
+            cast(bytes, group[0].payload),
             tuple(sorted(claim.claim_id for claim in group)),
             tuple(sorted(claim.claim_id for claim in claims if claim.payload != group[0].payload)),
         )
@@ -349,7 +349,9 @@ def _rank(
         overlap = len(query_tokens & _tokens(record.payload.decode("utf-8")))
         if overlap:
             candidates.append((overlap, record.confidence, _utc(record.event_time), record.record_id, record))
-    best = max(candidates, default=(0, None, None, None, None))
+    if not candidates:
+        return None, 0, len(live)
+    best = max(candidates)
     return best[-1], best[0], len(live)
 
 
