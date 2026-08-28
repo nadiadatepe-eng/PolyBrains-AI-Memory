@@ -296,11 +296,11 @@ frame isolation, lifecycle history, or abstention accounting.
 
 ## CP-C3 · v0.3 release gate
 
-- [ ] Confirm every CP-C0–C2 valid, mixed, negative, or invalid run has an immutable report and
+- [x] Confirm every CP-C0–C2 valid, mixed, negative, or invalid run has an immutable report and
       machine-readable result where applicable.
-- [ ] Update `CITATION.cff` to v0.3 and state explicitly that the retained scorer remains a
+- [x] Update `CITATION.cff` to v0.3 and state explicitly that the retained scorer remains a
       benchmark policy outside the core API.
-- [ ] Reproduce the complete gate and `git diff --check` from a clean checkout.
+- [x] Reproduce the complete gate and `git diff --check` from a clean checkout.
 - [ ] Tag and publish v0.3 only when the public commit matches the verified checkout.
 
 Gate: v0.3 publishes the narrow replicated result without claiming that provenance or linked

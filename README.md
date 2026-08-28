@@ -50,7 +50,7 @@ memories contradict. Explicit active `supports`/`contradicts` links selected ver
 abstained on unsupported conflicts across development, one-shot held-out evaluation, three seeds,
 confidence reversal, lifecycle correction, and owner/frame swaps. Similarity and confidence remain
 retrieval signals, not correctness evidence. The measured rule stays outside the core API; see
-`reports/cp-c2-replication.md`.
+`reports/cp-c3-v03-release.md`.
 
 ## Acknowledgements and attribution
 
